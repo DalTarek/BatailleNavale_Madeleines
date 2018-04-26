@@ -1,6 +1,8 @@
 package modele;
 
 public class Plateau {
+	final public static int TAILLELIGNE = 10;
+
 	//tableau d'entier : 1 si présence de bateau, 0 sinon , -1 si touché 
 	private int [][] plateau;
 	/**
@@ -49,5 +51,14 @@ public class Plateau {
 		if(this.verifPresenceBateau(p)==true){	
 			plateau[p.getX()][p.getY()]=-1;;
 		}
+	}
+
+	/**
+	 * Permet de récupérer la valeur à la case de coordonnées x,y
+	 * @param x : indice de colonne (ou ligne -> TODO à rectifier)
+	 * @param y : indice de ligne (ou colonne -> TODO à rectifier)
+	 */
+	public int getValeur(int x, int y) {
+		return plateau[x][y];
 	}
 }
