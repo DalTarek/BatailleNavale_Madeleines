@@ -8,17 +8,22 @@ public abstract class EpoqueFactory {
     public ArrayList<Bateau> creerBateaux() {
         ArrayList<Bateau> bateaux = new ArrayList<>();
 
-        bateaux.add(getBateauTresLong());
-        bateaux.add(getBateauLong());
-        bateaux.add(getBateauMoyen());
-        bateaux.add(getBateauMoyen());
-        bateaux.add(getBateauCourt());        
+        bateaux.add(getBateauTresLong(true));
+        bateaux.add(getBateauLong(false));
+        bateaux.add(getBateauMoyen(false));
+        bateaux.add(getBateauMoyen(true));
+        bateaux.add(getBateauCourt(false));        
 
         return bateaux;
     }
-
-    protected abstract Bateau getBateauTresLong();
-    protected abstract Bateau getBateauLong();
-    protected abstract Bateau getBateauMoyen();
-    protected abstract Bateau getBateauCourt();
+    
+    /**
+     * 
+     * @param b Vrai si le bateau est vertical, faux si horizontal
+     * @return
+     */
+    protected abstract Bateau getBateauTresLong(boolean b);
+    protected abstract Bateau getBateauLong(boolean b);
+    protected abstract Bateau getBateauMoyen(boolean b);
+    protected abstract Bateau getBateauCourt(boolean b);
 }

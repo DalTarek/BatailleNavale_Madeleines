@@ -1,10 +1,13 @@
 package modele;
 
+import java.util.Random;
+
 public class Plateau {
 	final public static int TAILLELIGNE = 10;
 
 	//tableau d'entier : 1 si prÃ©sence de bateau, 0 sinon , -1 si touchÃ© 
 	private int [][] plateau;
+	
 	/**
 	 * 
 	 * @param plateau le tableau d'initialisation
@@ -12,6 +15,17 @@ public class Plateau {
 	public Plateau(int[][] plateau){
 		this.plateau=plateau;
 	}
+	
+	/**
+	 * Constructeur qui génère un plateau aléatoire
+	 */
+	public Plateau() {
+		Random r = new Random();
+		for (int i = 0; i < plateau.length; i++)
+			for (int j = 0; j < plateau[0].length; j++)
+				this.plateau[i][j] = r.nextInt(2);
+	}
+	
 	/**
 	 * Permet de verifier si un bateau se trouve Ã  une postiion x, y.
 	 * @param p la position x,y Ã  verifier

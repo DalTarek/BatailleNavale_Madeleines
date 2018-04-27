@@ -13,3 +13,6 @@ L'attribut largeur de la classe Bateau se nomme maintenant longueur
 Ajout de fonctions dans la classe abstraite EpoqueFactory : elles permettent de créer
 pour chaque sous-classe chaque bateau qui existent (différentes tailles) et la différence entre les bateaux
 selon les époques.
+
+
+Ajout de classes pour le DAO.

@@ -11,13 +11,14 @@ public class BatailleNavale {
 	private AbstractDAOFactory factory;
 	
 	
-	public BatailleNavale() {
+	public BatailleNavale(AbstractDAOFactory factory) {
+		this.factory = factory;
 		//TODO créer la liste des bateau du joueur humain
-		//TODO créer le plateau du joueur humain : faire une méthode de génération de plateau aléatoire OU faire deux trois plateau static 
-		humain = new JoueurHumain();
+		Plateau plateauHumain = new Plateau();
+		humain = new JoueurHumain(plateauHumain, /* liste des bateaux */);
 		//TODO créer la liste des bateau du joueur ordinateur
-		//TODO créer le plateau du joueur ordinateur : faire une méthode de génération de plateau aléatoire OU faire deux trois plateau static 
-		ordinateur = new JoueurOrdinateur();
+		Plateau plateauOrdinateau = new Plateau();
+		ordinateur = new JoueurOrdinateur(plateauOrdinateur, /* liste des bateaux */);
 		joueurCourant = 0;
 	}
 	
