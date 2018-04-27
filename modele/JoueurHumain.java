@@ -99,4 +99,8 @@ public class JoueurHumain {
 		return false;
 		
 	}
+	
+	public Plateau getPlateau() {
+		return plateau;
+	}
 }

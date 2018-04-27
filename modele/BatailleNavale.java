@@ -17,7 +17,7 @@ public class BatailleNavale {
 		Plateau plateauHumain = new Plateau();
 		humain = new JoueurHumain(plateauHumain, /* liste des bateaux */);
 		//TODO créer la liste des bateau du joueur ordinateur
-		Plateau plateauOrdinateau = new Plateau();
+		Plateau plateauOrdinateur = new Plateau();
 		ordinateur = new JoueurOrdinateur(plateauOrdinateur, /* liste des bateaux */);
 		joueurCourant = 0;
 	}
@@ -73,14 +73,30 @@ public class BatailleNavale {
 	/**
 	 * Permet de sauvegarder une partie pour la reprendre plus tard
 	 */
-	public void sauvegarderPartie() {
-		factory.getBatailleDAO().sauvegarderPartie(this);
+	public void sauvegarderPartie(String nomFichier) {
+		factory.getBatailleDAO().sauvegarderPartie(this, nomFichier);
 	}
 	
 	/**
 	 * Permet de charger une partie sauvegardee
 	 */
-	public void chargerPartie() {
-		factory.getBatailleDAO().chargerPartie();
+	public void chargerPartie(String nomFichier) {
+		factory.getBatailleDAO().chargerPartie(nomFichier);
+	}
+
+	public JoueurOrdinateur getOrdinateur() {
+		return ordinateur;
+	}
+
+	public JoueurHumain getHumain() {
+		return humain;
+	}
+
+	public int getJoueurCourant() {
+		return joueurCourant;
+	}
+	
+	public void setJoueurCourant(int n) {
+		joueurCourant = n;
 	}
 }

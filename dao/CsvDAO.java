@@ -16,14 +16,14 @@ public class CsvDAO extends BatailleDAO {
 	}
 
 	@Override
-	public void sauvegarderPartie(BatailleNavale bataille) {
-		new CsvWriter(bataille);
+	public void sauvegarderPartie(BatailleNavale bataille, String nomFichier) {
+		new CsvWriter(bataille, nomFichier);
 	}
 
 	@Override
-	public BatailleNavale chargerPartie() {
+	public BatailleNavale chargerPartie(String nomFichier) {
 		CsvReader r = new CsvReader();
-		return r.run();
+		return r.run(nomFichier);
 	}
 
 }

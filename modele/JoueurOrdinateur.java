@@ -105,4 +105,18 @@ public class JoueurOrdinateur {
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 * @return la position du tir sur le plateau
+	 */
+	public Position recupPosTir() {
+		Position position = null;
+		//TODO 
+		return position;
+	}
+	
+	public Plateau getPlateau() {
+		return plateau;
+	}
 }
