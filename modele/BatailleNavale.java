@@ -73,7 +73,7 @@ public class BatailleNavale {
 	}
 	
 	/**
-	 * Permet de charger une partie sauvegardée
+	 * Permet de charger une partie sauvegardee
 	 */
 	public void chargerPartie() {
 		factory.getBatailleDAO().chargerPartie();
