@@ -39,8 +39,8 @@ public class Game extends JPanel {
             computerTable.setValueAt((char) (i-1 + 65), 0, i);
         }
 
-        computerTable.setEnabled(false);
-        playerTable.setRowSelectionAllowed(false);
+        playerTable.setEnabled(false);
+        computerTable.setRowSelectionAllowed(false);
 
         tablesPanel.add(computerTable);
         tablesPanel.add(playerTable);

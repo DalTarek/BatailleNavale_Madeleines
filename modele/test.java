@@ -26,6 +26,6 @@ public class test {
         
         JoueurHumain jh=new JoueurHumain(p,listb);
         
-        jh.subirTir(new Position(2,3));
+        jh.subirTir(new Position(3,1));
     }
 }

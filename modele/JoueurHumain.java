@@ -51,7 +51,7 @@ public class JoueurHumain {
 			//la position la plus en haut à gauche du bateau
 			pos=listeBateau.get(i).getPos();
 			//largeur du bateau
-			largeurBateau=listeBateau.get(i).getLargeur();
+			largeurBateau=listeBateau.get(i).getLongueur();
 			//orientation du bateau : VRAI si vertical, FAUX sinon
 			boolean orientation=listeBateau.get(i).getOrientation();
 			if(orientation){// si le bateau est vertical
@@ -59,7 +59,7 @@ public class JoueurHumain {
 				for(int l=0;l<largeurBateau;l++){//On parcourt la largeur du bateau jusqu'a a atteindre la position p passé en paramètre
 					Position tempy=new Position(pos);	
 					tempy.setY(tempy.getY()+l);
-					if(p.same(tempy)){//Si la position passé en paramètre et la position fictive sont égale, on à trouvé quel bateau est à la postion p
+					if(p.compareTo(tempy)==0){//Si la position passé en paramètre et la position fictive sont égale, on à trouvé quel bateau est à la postion p
 						trouve=true;
 					}
 				}
@@ -67,7 +67,7 @@ public class JoueurHumain {
 				for(int l=0;l<largeurBateau;l++){//Si le bateau est horizontal
 					Position tempx=new Position(pos);
 					tempx.setX(tempx.getX()+l);
-					if(p.same(tempx)){
+					if(p.compareTo(tempx)==0){
 						trouve=true;
 					}
 				}
@@ -79,5 +79,24 @@ public class JoueurHumain {
 		}else{
 			return -1;
 		}
+	}
+	/**
+	 * Méthode qui vérifie si une position appartient a la liste des case déjà touché
+	 * @param p 
+	 * @return boolean true si la position appartient a la liste des cases touché, faux sinon
+	 */
+	public boolean caseDejaTouchee(Position p){
+		//TODO
+		return false;
+		
+	}
+	/**
+	 * 
+	 * @return booolean true si la joueur humain a perdu
+	 */
+	public boolean aPerdu(){
+		//TODO
+		return false;
+		
 	}
 }

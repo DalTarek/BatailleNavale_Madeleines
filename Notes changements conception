@@ -1,0 +1,15 @@
+Changements par rapport à la conception :
+
+La méthode getProchainTir de la classe Stratégie prend maintenant en paramètre deux ArrayList:
+   Arraylist des tirs ratés et Arraylist des tirs réussis
+
+L'attribut de type Stratégie de Bataille Navale se trouve maintenant dans la classe JoueurOrdinateur en tant qu'attribut
+
+Chaque joueur stocke maintenant la liste des positions des tirs ratés et la liste des positions des tirs réussis, à la place d'une seule liste contenant tous les tirs.
+
+L'attribut largeur de la classe Bateau se nomme maintenant longueur
+
+
+Ajout de fonctions dans la classe abstraite EpoqueFactory : elles permettent de créer
+pour chaque sous-classe chaque bateau qui existent (différentes tailles) et la différence entre les bateaux
+selon les époques.
