@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import modele.BatailleNavale;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -19,9 +21,12 @@ public class LoadGame extends JPanel {
 
     private JButton playButton;
     private JList savedGamesList;
+    
+    private BatailleNavale bataille;
 
-    public LoadGame(Application app) {
+    public LoadGame(Application app, BatailleNavale bataille) {
         application = app;
+        this.bataille = bataille;
         buildPanel();
     }
 
@@ -54,6 +59,7 @@ public class LoadGame extends JPanel {
 
                 // load the state of the game with the choosen name
                 // TODO
+                bataille.chargerPartie("test.csv"/*a changer*/);
 
                 // switch to the game
                 application.switchToPanel("jeu");
