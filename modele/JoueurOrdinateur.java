@@ -3,6 +3,8 @@ package modele;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import modele.strategie.Strategie;
+
 
 public class JoueurOrdinateur {
 	ArrayList<Position> listeCaseTouche;
@@ -10,11 +12,14 @@ public class JoueurOrdinateur {
 	ArrayList<Bateau> listeBateau;
 	Plateau plateau;
 	
-	public JoueurOrdinateur(Plateau p, ArrayList<Bateau>listbat){
+	private Strategie strategie;
+	
+	public JoueurOrdinateur(Plateau p, ArrayList<Bateau>listbat, Strategie strat){
 		plateau=p;
 		listeBateau=listbat;
 		listeCaseTouche=new ArrayList<Position>();
 		listeCaseRate=new ArrayList<Position>();
+		this.strategie = strat;
 	}
 	
 	public void subirTir(Position p){
@@ -83,37 +88,30 @@ public class JoueurOrdinateur {
 	}
 	
 	/**
-	 * Méthode qui vérifie si une position appartient a la liste des case déjà touché
-	 * @param p 
-	 * @return boolean vrai si la position appartient a la liste des cases touché, faux sinon
-	 */
-	public boolean caseDejaTouchee(Position p){
-		return listeCaseTouche.contains(p);		
-	}
-	
-	/**
 	 * 
 	 * @return booolean true si le joueur ordinateur a perdu
 	 */
 	public boolean aPerdu(){
-		for (int i = 0; i < plateau.TAILLELIGNE; i++) {
-			for (int j = 0; j < plateau.TAILLELIGNE; j++) {
-				if (plateau.getValeur(i, j) == 1)
-					return false;
+		// On part du principe que le joueur a perdu
+		boolean aPerdu = true;
+
+		// Si on trouve un bateau encore en vie, alors il n'a en fait pas perdu
+		for (int i = 0; i < listeBateau.size(); i++) {
+			if (listeBateau.get(i).getVie() > 0) {
+				aPerdu = false;
+				break;
 			}
 		}
-		
-		return true;
+
+		return aPerdu;
 	}
 	
 	/**
 	 * 
-	 * @return la position du tir sur le plateau
+	 * @return la position du prochain tir de l'ordinateur sur le plateau
 	 */
 	public Position recupPosTir() {
-		Position position = null;
-		//TODO 
-		return position;
+		return strategie.getProchainTir(listeCaseTouche, listeCaseRate);
 	}
 	
 	public Plateau getPlateau() {

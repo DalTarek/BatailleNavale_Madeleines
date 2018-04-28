@@ -3,12 +3,14 @@ package modele;
 import java.util.ArrayList;
 
 import dao.AbstractDAOFactory;
+import modele.strategie.TirAleatoire;
 
 public class BatailleNavale {
 	private Position caseSelectionnee;
 	private JoueurOrdinateur ordinateur;
 	private JoueurHumain humain;
 	private int joueurCourant; // 0 pour humain et 1 pour ordinateur
+	private static int JOUEURHUMAIN = 0, JOUEURORDI = 1;
 	
 	
 	private AbstractDAOFactory factory;
@@ -21,7 +23,7 @@ public class BatailleNavale {
 		humain = new JoueurHumain(plateauHumain, /* liste des bateaux */);
 		//TODO créer la liste des bateau du joueur ordinateur et le plateau correspondant
 		Plateau plateauOrdinateur = new Plateau();
-		ordinateur = new JoueurOrdinateur(plateauOrdinateur, /* liste des bateaux */);
+		ordinateur = new JoueurOrdinateur(plateauOrdinateur, /* liste des bateaux */, new TirAleatoire());
 		joueurCourant = 0;
 	}
 	
@@ -37,23 +39,27 @@ public class BatailleNavale {
 	}
 
 	public void tirer() {
-		Position p = ordinateur.recupPosTir();
-		stockCaseSelectionnee(p);
-		humain.subirTir(caseSelectionnee);
-		if (!humain.aPerdu())
-			changerJoueurCourant();
+		if (joueurCourant == JOUEURHUMAIN) {
+			ordinateur.subirTir(caseSelectionnee);
+			if (!ordinateur.aPerdu())
+				changerJoueurCourant();
+		} else {
+			Position p = ordinateur.recupPosTir();
+			stockCaseSelectionnee(p);
+			humain.subirTir(caseSelectionnee);
+			if (!humain.aPerdu())
+				changerJoueurCourant();
+		}
 	}
 	
 	/**
 	 * Alterne entre le joueur humain et le joueur ordinateur
-	 * 0 pour le joueur humain
-	 * 1 pour le joueur ordinateur
 	 */
 	public void changerJoueurCourant() {
-		if (joueurCourant == 0)
-			joueurCourant = 1;
+		if (joueurCourant == JOUEURHUMAIN)
+			joueurCourant = JOUEURORDI;
 		else
-			joueurCourant = 0;
+			joueurCourant = JOUEURHUMAIN;
 	}
 	
 	/**
@@ -65,10 +71,7 @@ public class BatailleNavale {
 		boolean valide = false;
 		if (joueurCourant == 0) {
 			valide = humain.caseDejaTouchee(p);
-		} else {
-			valide = ordinateur.caseDejaTouchee(p);
-		}
-		
+		}	
 		return valide;
 	}
 	
