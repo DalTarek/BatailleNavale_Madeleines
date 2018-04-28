@@ -11,16 +11,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import modele.BatailleNavale;
 import test.Application;
 
 public class Game extends JPanel {
     final public static int BUTTONSNUMBER = 10;
 
     private Application application;
+    
+    private BatailleNavale bataille;
 
-    public Game(Application app) {
+    public Game(Application app, BatailleNavale bataille) {
         super(new BorderLayout());
         application = app;
+        this.bataille = bataille;
         this.buildPanel();
     }
 
@@ -63,7 +67,7 @@ public class Game extends JPanel {
 
                     // save the state of the game in a file using DAO
                     // TODO
-
+                    bataille.sauvegarderPartie("test.csv" /*a changer*/);
                 }
 
                 // go back to main menu
@@ -83,6 +87,11 @@ public class Game extends JPanel {
                 // yes : shoot
                 // no : disable button
                 // TODO
+            	if (bataille.estValide(/* position */)) {
+            		bataille.tirer();
+            	} else {
+            		shoot.setEnabled(false);
+            	}      		
             }
         });
 

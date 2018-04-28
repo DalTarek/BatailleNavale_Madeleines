@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import dao.AbstractDAOFactory;
+import modele.BatailleNavale;
+
 import java.awt.CardLayout;
 import java.awt.Dimension;
 
@@ -19,10 +22,11 @@ public class Application extends JFrame {
 
     public Application() {
         super("Bataille Navale");
-        this.buildFrame();
+        BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory());
+        this.buildFrame(bataille);
     }
 
-    private void buildFrame() {
+    private void buildFrame(BatailleNavale bataille) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(600, 500));
 
@@ -31,8 +35,8 @@ public class Application extends JFrame {
 
         this.mainPanel.add(new MainMenu(this), "menu");
         this.mainPanel.add(new NewGame(this), "nouvellePartie");
-        this.mainPanel.add(new Game(this), "jeu");
-        this.mainPanel.add(new LoadGame(this), "reprendrePartie");            
+        this.mainPanel.add(new Game(this, bataille), "jeu");
+        this.mainPanel.add(new LoadGame(this, bataille), "reprendrePartie");            
 
         this.add(mainPanel);
 

@@ -16,3 +16,7 @@ selon les époques.
 
 
 Ajout de classes pour le DAO.
+
+Ajout d'un booleen dans la classe Bateau pour savoir si le bateau est positionné verticalement ou horizontalement.
+
+Ajout d'une fonction RechercheBateau dans la classe JoueurHumain et JoueurOrdinateur qui permet de rechercher le bateau qui correspond a la postion donnée en paramètre

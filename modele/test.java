@@ -6,7 +6,11 @@ import test.Application;
 
 public class test {
 	public static void main(String[] args) {
-						//TEST SUBITIR(position)
+		testConstructeurPlateauListBateau();
+    }
+	
+	public static void TestSubirTir(){
+		//TEST SUBITIR(position)
         Bateau bateau1=new BateauSimple(4,4,new Position(0,1),false);
         Bateau bateau2=new BateauSimple(3,3,new Position(0,3),false);
         ArrayList<Bateau>listb=new ArrayList<Bateau>();
@@ -27,5 +31,22 @@ public class test {
         JoueurHumain jh=new JoueurHumain(p,listb);
         
         jh.subirTir(new Position(3,1));
-    }
+	}
+	
+	public static void testConstructeurPlateauListBateau(){
+		  
+	      Bateau bateau2=new BateauSimple(3,3,new Position(0,3),false);
+	      Bateau bateau1=new BateauSimple(4,4,new Position(0,1),true);
+	      ArrayList<Bateau>listb=new ArrayList<Bateau>();
+	      listb.add(bateau1);
+	      listb.add(bateau2);
+	      Plateau p=new Plateau(listb);
+	      
+	      for (int i =0;i<p.TAILLELIGNE;i++){
+	    	   for(int j=0;j<p.TAILLELIGNE;j++){
+	    		   System.out.print(p.getValeur(j, i));
+	    	   }
+	    	   System.out.println("");
+	       }
+	}
 }
