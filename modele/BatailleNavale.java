@@ -1,6 +1,7 @@
 package modele;
 
 import dao.AbstractDAOFactory;
+import epoque.EpoqueFactory;
 
 public class BatailleNavale {
 	private Position caseSelectionnee;
@@ -11,19 +12,17 @@ public class BatailleNavale {
 	private AbstractDAOFactory factory;
 	
 	
-	public BatailleNavale(AbstractDAOFactory factory) {
+	public BatailleNavale(AbstractDAOFactory factory, EpoqueFactory epoqueFactory) {
 		this.factory = factory;
-		//TODO créer la liste des bateau du joueur humain
-		Plateau plateauHumain = new Plateau();
-		humain = new JoueurHumain(plateauHumain, /* liste des bateaux */);
-		//TODO créer la liste des bateau du joueur ordinateur
-		Plateau plateauOrdinateur = new Plateau();
-		ordinateur = new JoueurOrdinateur(plateauOrdinateur, /* liste des bateaux */);
-		joueurCourant = 0;
+
 	}
 	
-	public void creerPartie() {
-		
+	public void creerPartie(EpoqueFactory epoqueFactory) {
+		Plateau plateauHumain = new Plateau();
+		humain = new JoueurHumain(plateauHumain, epoqueFactory.creerBateaux());
+		Plateau plateauOrdinateur = new Plateau();
+		ordinateur = new JoueurOrdinateur(plateauOrdinateur, epoqueFactory.creerBateaux());
+		joueurCourant = 0;
 	}
 	
 	/**

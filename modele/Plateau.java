@@ -17,7 +17,7 @@ public class Plateau {
 	}
 	
 	/**
-	 * Constructeur qui génère un plateau aléatoire
+	 * Constructeur qui genere un plateau aleatoire
 	 */
 	public Plateau() {
 		Random r = new Random();

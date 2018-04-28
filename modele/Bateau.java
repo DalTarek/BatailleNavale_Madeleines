@@ -2,7 +2,7 @@ package modele;
 
 public abstract class Bateau {
 	
-	protected boolean vertical;
+	protected boolean vertical; // orientation du bateau
     protected int vie; // points de vie du bateau
     protected int longueur; // nombre de cases du bateau
     protected Position position; // Position de la case la plus en haut à gauche du bateau
@@ -33,6 +33,7 @@ public abstract class Bateau {
         return false;
     }
 
+    /**************************SETTER*******************************/
     public void setPosition(Position p) {
         position = p;
     }

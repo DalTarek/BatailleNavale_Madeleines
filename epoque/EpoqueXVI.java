@@ -6,19 +6,19 @@ import modele.BateauSimple;
 
 public class EpoqueXVI extends EpoqueFactory {
 
-    protected Bateau getBateauTresLong(boolean b) {
-        return new BateauSimple(1, 5, null, b);
+    protected Bateau getBateauTresLong() {
+        return new BateauSimple(1, 5, null, random.nextBoolean());
     }
 
-    protected  Bateau getBateauLong(boolean b) {
-        return new BateauSimple(1, 4, null, b);
+    protected  Bateau getBateauLong() {
+        return new BateauSimple(1, 4, null, random.nextBoolean());
     }
 
-    protected Bateau getBateauMoyen(boolean b) {
-        return new BateauSimple(1, 3, null, b);
+    protected Bateau getBateauMoyen() {
+        return new BateauSimple(1, 3, null, random.nextBoolean());
     }
 
-    protected Bateau getBateauCourt(boolean b) {
-        return new BateauSimple(1, 2, null, b);        
+    protected Bateau getBateauCourt() {
+        return new BateauSimple(1, 2, null, random.nextBoolean()); 
     }
 }
