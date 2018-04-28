@@ -86,18 +86,26 @@ public class JoueurHumain {
 	 * @return boolean true si la position appartient a la liste des cases touché, faux sinon
 	 */
 	public boolean caseDejaTouchee(Position p){
-		//TODO
-		return false;
-		
+		// la case a déjà été sélectionnée si elle est dans les cases ratées ou les cases réussies
+		return (listeCaseRate.contains(p) || listeCaseTouche.contains(p));
 	}
 	/**
 	 * 
 	 * @return booolean true si la joueur humain a perdu
 	 */
 	public boolean aPerdu(){
-		//TODO
-		return false;
+		// On part du principe que le joueur a perdu
+		boolean aPerdu = true;
 		
+		// Si on trouve un bateau encore en vie, alors il n'a en fait pas perdu
+		for (int i = 0; i < listeBateau.size(); i++) {
+			if (listeBateau.get(i).getVie() > 0) {
+				aPerdu = false;
+				break;
+			}
+		}
+
+		return aPerdu;
 	}
 	
 	public Plateau getPlateau() {

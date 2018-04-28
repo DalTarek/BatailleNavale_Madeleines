@@ -51,6 +51,9 @@ public abstract class Bateau {
 	}
 	public boolean getOrientation(){
 		return vertical;
-	}
+    }
+    public int getVie() {
+        return vie;
+    }
 
 }
