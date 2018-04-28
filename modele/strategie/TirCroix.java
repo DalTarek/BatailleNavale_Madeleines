@@ -18,7 +18,7 @@ public class TirCroix {
         // On stocke les dernières positions de chaque liste
         Position dernierePositionReussie = listeTirsReussis.get(listeTirsReussis.size());
         Position dernierePositionRatee = listeTirsRates.get(listeTirsRates.size());
-        // Si la dernière position de la liste des tirs ratés a des coordonnées supérieures
+        // Si la dernière position de la liste des tirs ratés a des coordonnées supérieures (sur Y ou sur X si Y équivalent)
         // à la dernière position de la liste des tirs réussis
         // Il faut récupérer la dernière position des tirs ratés
         if (dernierePositionRatee.compareTo(dernierePositionReussie) == 1)

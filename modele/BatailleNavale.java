@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.ArrayList;
+
 import dao.AbstractDAOFactory;
 
 public class BatailleNavale {
@@ -8,22 +10,22 @@ public class BatailleNavale {
 	private JoueurHumain humain;
 	private int joueurCourant; // 0 pour humain et 1 pour ordinateur
 	
+	
 	private AbstractDAOFactory factory;
 	
 	
 	public BatailleNavale(AbstractDAOFactory factory) {
 		this.factory = factory;
-		//TODO créer la liste des bateau du joueur humain
+		//TODO créer la liste des bateau du joueur humain et le plateau correspondant
 		Plateau plateauHumain = new Plateau();
 		humain = new JoueurHumain(plateauHumain, /* liste des bateaux */);
-		//TODO créer la liste des bateau du joueur ordinateur
+		//TODO créer la liste des bateau du joueur ordinateur et le plateau correspondant
 		Plateau plateauOrdinateur = new Plateau();
 		ordinateur = new JoueurOrdinateur(plateauOrdinateur, /* liste des bateaux */);
 		joueurCourant = 0;
 	}
 	
 	public void creerPartie() {
-		
 	}
 	
 	/**

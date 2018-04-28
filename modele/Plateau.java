@@ -1,6 +1,10 @@
 package modele;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
+
+
 
 public class Plateau {
 	final public static int TAILLELIGNE = 10;
@@ -15,9 +19,46 @@ public class Plateau {
 	public Plateau(int[][] plateau){
 		this.plateau=plateau;
 	}
-	
 	/**
-	 * Constructeur qui g�n�re un plateau al�atoire
+	 * Construit un plateau en fonction d'une liste de bateau passé en paramètre
+	 * @param listBateau 
+	 */
+	public Plateau(ArrayList<Bateau>listBateau){
+		
+		plateau=new int[TAILLELIGNE][TAILLELIGNE];
+		//longueur du bateau i
+		int longueur;
+		//orientation du bateau i
+		boolean orientation;
+		//position du bateau i
+		Position posCourant;
+		for(int i=0;i<listBateau.size();i++){
+			longueur=listBateau.get(i).getLongueur();
+			orientation=listBateau.get(i).getOrientation();
+			posCourant=listBateau.get(i).getPos();
+			if(orientation){
+				
+				for(int y=posCourant.getY();y<posCourant.getY()+longueur;y++){
+					if(this.plateau[posCourant.getX()][y]==0){
+						this.plateau[posCourant.getX()][y]=1;
+					}else{
+						System.out.println("Erreur creation d'un bateau sur un bateau déjà existant");
+					}
+				}
+			}else{
+				
+				for(int x=posCourant.getX();x<posCourant.getX()+longueur;x++){
+					if(this.plateau[x][posCourant.getY()]==0){
+						this.plateau[x][posCourant.getY()]=1;
+					}else{
+						System.out.println("Erreur : creation d'un bateau sur un bateau déjà existant");
+					}
+				}
+			}
+		}
+	}
+	/**
+	 * Constructeur qui g�n�re un plateau al�atoire
 	 */
 	public Plateau() {
 		Random r = new Random();
