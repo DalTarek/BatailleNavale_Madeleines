@@ -35,7 +35,7 @@ public class NewGame extends JPanel {
         JPanel lists = new JPanel(new GridLayout(1, 2));
 
         // temporary selections
-        String[] ages = {"epoque1", "epoque2", "epoque3"};
+        String[] ages = {"EpoqueXVI", "EpoqueXX"};
 
         // load dynamically all the strategies allowed
         // TODO 
@@ -44,7 +44,7 @@ public class NewGame extends JPanel {
         lists.add(ageList);
 
         // temporary selections
-        String[] strategies = {"strategy1", "strategy2", "strategy3"};
+        String[] strategies = {"Tir aléatoire", "Tir en croix"};
 
         // load dynamically all the strategies allowed
         // TODO

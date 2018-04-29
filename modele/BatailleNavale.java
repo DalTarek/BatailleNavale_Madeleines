@@ -1,13 +1,14 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import dao.AbstractDAOFactory;
 import epoque.EpoqueFactory;
 import modele.strategie.Strategie;
 import modele.strategie.TirAleatoire;
 
-public class BatailleNavale {
+public class BatailleNavale extends Observable {
 	private Position caseSelectionnee;
 	private JoueurOrdinateur ordinateur;
 	private JoueurHumain humain;
