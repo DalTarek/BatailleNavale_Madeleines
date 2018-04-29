@@ -10,6 +10,14 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionListener;
 
+import epoque.EpoqueFactory;
+import epoque.EpoqueXVI;
+import epoque.EpoqueXX;
+import modele.BatailleNavale;
+import modele.strategie.Strategie;
+import modele.strategie.TirAleatoire;
+import modele.strategie.TirCroix;
+
 import javax.swing.event.ListSelectionEvent;
 
 
@@ -23,10 +31,12 @@ public class NewGame extends JPanel {
 
     private JList ageList, strategyList;
     private JButton playButton;
+    private BatailleNavale bataille;
 
-    public NewGame(Application app) {
+    public NewGame(Application app, BatailleNavale bataille) {
         application = app;
         this.buildPanel();
+        this.bataille=bataille;
     }
 
     private void buildPanel() {
@@ -35,6 +45,7 @@ public class NewGame extends JPanel {
         JPanel lists = new JPanel(new GridLayout(1, 2));
 
         // temporary selections
+
         String[] ages = {"EpoqueXVI", "EpoqueXX"};
 
         // load dynamically all the strategies allowed
@@ -44,6 +55,7 @@ public class NewGame extends JPanel {
         lists.add(ageList);
 
         // temporary selections
+
         String[] strategies = {"Tir al�atoire", "Tir en croix"};
 
         // load dynamically all the strategies allowed
@@ -72,7 +84,30 @@ public class NewGame extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // create a new game with all its variables
                 // TODO
-
+            	//epoque/stratégie
+            	/***********************A REVOIR***********************/
+            	//verification de l'époque 
+            	if((String)ageList.getSelectedValue() =="epoqueXVI"){
+            		//vérification de la stratégie
+                	if((String)strategyList.getSelectedValue() =="strategy Aleatoire"){
+                		//creation de la partie en fonction de la stratégie et de l'époque
+                    	bataille.creerPartie(new EpoqueXVI(),new TirAleatoire());
+                	}else if((String)strategyList.getSelectedValue() =="strategy en croix"){
+                		//creation de la partie en fonction de la stratégie et de l'époque
+                    	bataille.creerPartie(new EpoqueXVI(),new TirCroix());
+                	}
+            	}else if((String)ageList.getSelectedValue() =="epoqueXX") {
+            		//vérification de la stratégie
+                	if((String)strategyList.getSelectedValue() =="strategy Aleatoire"){
+                		//creation de la partie en fonction de la stratégie et de l'époque
+                    	bataille.creerPartie(new EpoqueXX(),new TirAleatoire());
+                	}else if((String)strategyList.getSelectedValue() =="strategy en croix"){
+                		//creation de la partie en fonction de la stratégie et de l'époque
+                    	bataille.creerPartie(new EpoqueXX(),new TirCroix());
+                	}
+            	}
+            	/*******************************************************/
+            	
                 ageList.clearSelection();
                 strategyList.clearSelection();
                 playButton.setEnabled(false);

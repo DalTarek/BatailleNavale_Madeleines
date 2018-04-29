@@ -44,7 +44,7 @@ public class Game extends JPanel implements Observer {
         for (int i = 1; i < BUTTONSNUMBER+1; i++) {
             playerTable.setValueAt(i, i, 0);
             playerTable.setValueAt((char) (i-1 + 65), 0, i);
-
+            
             computerTable.setValueAt(i, i, 0);
             computerTable.setValueAt((char) (i-1 + 65), 0, i);
         }

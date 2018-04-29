@@ -23,6 +23,10 @@ public class BatailleNavale extends Observable {
 		this.factory = factory;
 		creerPartie(epoque, strat);
 	}
+
+	public BatailleNavale(AbstractDAOFactory factory) {
+		this.factory = factory;
+	}
 	
 	public void creerPartie(EpoqueFactory epoqueFactory, Strategie strat) {
 		ArrayList<Bateau> listeBateauxHumain = epoqueFactory.creerBateaux();
@@ -50,8 +54,7 @@ public class BatailleNavale extends Observable {
 				changerJoueurCourant();
 		} else {
 			Position p = ordinateur.recupPosTir();
-			stockCaseSelectionnee(p);
-			humain.subirTir(caseSelectionnee);
+			humain.subirTir(p);
 			if (!humain.aPerdu())
 				changerJoueurCourant();
 		}
@@ -74,9 +77,13 @@ public class BatailleNavale extends Observable {
 	 */
 	public boolean estValide(Position p) {
 		boolean valide = false;
-		if (joueurCourant == 0) {
+		if (joueurCourant == JOUEURHUMAIN) {
 			valide = humain.caseDejaTouchee(p);
-		}	
+		}
+		
+		if (valide)
+			stockCaseSelectionnee(p);
+		
 		return valide;
 	}
 	
@@ -109,4 +116,6 @@ public class BatailleNavale extends Observable {
 	public void setJoueurCourant(int n) {
 		joueurCourant = n;
 	}
+	
+
 }

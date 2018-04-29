@@ -41,7 +41,7 @@ public abstract class EpoqueFactory {
             zone++;
         }
         
-        // Il reste 2 bateaux, on en met un en bas � droite du plateau
+        // Il reste 2 bateaux, on en met un en bas a droite du plateau
         Bateau bateau2 = bateaux.get(bateaux.size() - 2);
         if (bateau2.getOrientation()) { // le bateau est vertical
         	bateau2.setPosition(new Position(tailleMoitieLigne + 2 + random.nextInt(3), tailleMoitieLigne + random.nextInt(3)));
@@ -59,11 +59,9 @@ public abstract class EpoqueFactory {
 
         return bateaux;
     }
-    
+
     /**
-     * 
-     * @param b Vrai si le bateau est vertical, faux si horizontal
-     * @return
+     * création de bateau selon l'époque choisie
      */
     protected abstract Bateau getBateauTresLong();
     protected abstract Bateau getBateauLong();

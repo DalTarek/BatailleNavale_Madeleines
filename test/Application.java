@@ -24,7 +24,8 @@ public class Application extends JFrame {
 
     public Application() {
         super("Bataille Navale");
-        BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory(), new EpoqueXVI(), new TirAleatoire());
+        //BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory(), new EpoqueXVI(), new TirAleatoire());
+        BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory());
         this.buildFrame(bataille);
     }
 
@@ -36,7 +37,7 @@ public class Application extends JFrame {
         mainPanel = new JPanel(cardLayout);
 
         this.mainPanel.add(new MainMenu(this), "menu");
-        this.mainPanel.add(new NewGame(this), "nouvellePartie");
+        this.mainPanel.add(new NewGame(this,bataille), "nouvellePartie");
         this.mainPanel.add(new Game(this, bataille), "jeu");
         this.mainPanel.add(new LoadGame(this, bataille), "reprendrePartie");            
 
