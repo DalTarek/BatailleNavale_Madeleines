@@ -1,19 +1,19 @@
 package view;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
+
+import java.io.File;
 
 import test.*;
 
-/**
- * @author guillaume bergerot
- */
 public class MainMenu extends JPanel {
     private Application application;
 
@@ -45,7 +45,16 @@ public class MainMenu extends JPanel {
         
             @Override
             public void actionPerformed(ActionEvent e) {
-                application.switchToPanel("reprendrePartie");
+                String currentDirectory = System.getProperty("user.dir");
+
+                // get directory containing saves
+                File savesDirectory = new File(currentDirectory + "/sauvegardes");
+
+                if (!savesDirectory.exists() || (savesDirectory.listFiles().length == 0)) {
+                    JOptionPane.showMessageDialog(null, "Il n'y a aucune sauvegarde actuellement", "Information", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    application.switchToPanel("reprendrePartie");
+                }
             }
         });
 

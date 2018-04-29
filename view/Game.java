@@ -18,6 +18,8 @@ import javax.swing.table.TableCellRenderer;
 import modele.BatailleNavale;
 import test.Application;
 
+import java.io.File;
+
 @SuppressWarnings("deprecation")
 public class Game extends JPanel implements Observer {
     final public static int BUTTONSNUMBER = 10;
@@ -145,11 +147,21 @@ public class Game extends JPanel implements Observer {
                 if (answer==JOptionPane.CANCEL_OPTION)
                     return;
                 if (answer==JOptionPane.YES_OPTION){
-                    String name = (String) JOptionPane.showInputDialog(null, "Quel nom souhaitez-vous donner à la sauvegarde ?");
+					String currentDirectory = System.getProperty("user.dir");
+
+					// get directory containing saves
+					File savesDirectory = new File(currentDirectory + "/sauvegardes");
+
+					if (!savesDirectory.exists()) {
+						savesDirectory.mkdir();
+					}
+
+					String name = (String) JOptionPane.showInputDialog(null, "Quel nom souhaitez-vous donner à la sauvegarde ?");
+					
+					bataille.ajouterNomPartieSauvegardee(name);
 
                     // save the state of the game in a file using DAO
-                    // TODO
-                    bataille.sauvegarderPartie(name);
+                    bataille.sauvegarderPartie(savesDirectory + "/" + name + ".csv");
                 }
 
                 // go back to main menu

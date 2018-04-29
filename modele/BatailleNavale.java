@@ -14,6 +14,8 @@ public class BatailleNavale extends Observable {
 	private JoueurHumain humain;
 	private int joueurCourant; // 0 pour humain et 1 pour ordinateur
 	private static int JOUEURHUMAIN = 0, JOUEURORDI = 1;
+
+	private ArrayList<String> nomPartiesSauvegardees = new ArrayList<>();
 	
 	
 	private AbstractDAOFactory factory;
@@ -117,5 +119,18 @@ public class BatailleNavale extends Observable {
 		joueurCourant = n;
 	}
 	
+	public void ajouterNomPartieSauvegardee(String nom) {
+		nomPartiesSauvegardees.add(nom);
 
+		setChanged();
+		notifyObservers();
+	}
+
+	public String getNomPartieSauvegardee(int index) {
+		return nomPartiesSauvegardees.get(index);
+	}
+
+	public int getTailleListePartiesSauvegardees() {
+		return nomPartiesSauvegardees.size();
+	}
 }

@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 
 import java.io.File;
 
+import java.util.Observer;
+import java.util.Observable;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -19,7 +21,7 @@ import java.awt.event.ActionEvent;
 
 import test.Application;
 
-public class LoadGame extends JPanel {
+public class LoadGame extends JPanel implements Observer {
 
     private Application application;
 
@@ -32,6 +34,8 @@ public class LoadGame extends JPanel {
         application = app;
         this.bataille = bataille;
         buildPanel();
+
+        bataille.addObserver(this);
     }
 
     private void buildPanel() {
@@ -41,10 +45,13 @@ public class LoadGame extends JPanel {
 
         // get directory containing saves
         File savesDirectory = new File(currentDirectory + "/sauvegardes");
+
         ArrayList<String> names = new ArrayList<>();
         for (File f : savesDirectory.listFiles()) {
             // discard extension of file
-            names.add(f.getName().substring(0, f.getName().indexOf(".")));
+            String name = f.getName().substring(0, f.getName().indexOf("."));
+            names.add(name);
+            bataille.ajouterNomPartieSauvegardee(name);
         }
         
         savedGamesList = new JList<>(names.toArray());
@@ -77,5 +84,15 @@ public class LoadGame extends JPanel {
         playButton.setEnabled(false);
         this.add(playButton);
     }
+
+    @Override
+	public void update(Observable arg0, Object arg1) {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < bataille.getTailleListePartiesSauvegardees(); i++) {
+            names.add(bataille.getNomPartieSauvegardee(i));
+        }
+
+        savedGamesList.setListData(names.toArray());
+	}
     
 }
