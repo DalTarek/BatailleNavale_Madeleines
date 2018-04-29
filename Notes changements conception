@@ -20,3 +20,9 @@ Ajout de classes pour le DAO.
 Ajout d'un booleen dans la classe Bateau pour savoir si le bateau est positionné verticalement ou horizontalement.
 
 Ajout d'une fonction RechercheBateau dans la classe JoueurHumain et JoueurOrdinateur qui permet de rechercher le bateau qui correspond a la postion donnée en paramètre
+
+
+
+
+Affichage du plateau du joueur : juste donner le plateau à la vue
+Affichage du plateau de l'ordi : donner liste cases touchées + liste cases ratées + liste des bateaux (pour mettre les cases des bateaux détruits (0 pdv) en couleur différente)

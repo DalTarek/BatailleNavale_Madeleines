@@ -2,6 +2,10 @@ package view;
 
 import java.awt.GridLayout;
 
+import java.io.File;
+
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -33,12 +37,17 @@ public class LoadGame extends JPanel {
     private void buildPanel() {
         this.setLayout(new GridLayout(2, 1));
 
-        // temporary selections
-        String[] games = {"game1", "game2"};
-        // load dynamically names of games saved
-        // TODO
+        String currentDirectory = System.getProperty("user.dir");
+
+        // get directory containing saves
+        File savesDirectory = new File(currentDirectory + "/sauvegardes");
+        ArrayList<String> names = new ArrayList<>();
+        for (File f : savesDirectory.listFiles()) {
+            // discard extension of file
+            names.add(f.getName().substring(0, f.getName().indexOf(".")));
+        }
         
-        savedGamesList = new JList<>(games);
+        savedGamesList = new JList<>(names.toArray());
 
         savedGamesList.addListSelectionListener(new ListSelectionListener(){
         
@@ -57,9 +66,8 @@ public class LoadGame extends JPanel {
                 savedGamesList.clearSelection();
                 playButton.setEnabled(false);
 
-                // load the state of the game with the choosen name
-                // TODO
-                bataille.chargerPartie("test.csv"/*a changer*/);
+                // load a game based on selected file name
+                bataille.chargerPartie(System.getProperty("user.dir") + "/sauvegardes/" + savedGamesList.getSelectedValue() + ".csv");
 
                 // switch to the game
                 application.switchToPanel("jeu");
