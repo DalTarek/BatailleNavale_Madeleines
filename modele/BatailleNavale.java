@@ -22,6 +22,10 @@ public class BatailleNavale {
 		this.factory = factory;
 		creerPartie(epoque, strat);
 	}
+
+	public BatailleNavale(AbstractDAOFactory factory) {
+		this.factory = factory;
+	}
 	
 	public void creerPartie(EpoqueFactory epoqueFactory, Strategie strat) {
 		ArrayList<Bateau> listeBateauxHumain = epoqueFactory.creerBateaux();
@@ -108,4 +112,6 @@ public class BatailleNavale {
 	public void setJoueurCourant(int n) {
 		joueurCourant = n;
 	}
+	
+
 }
