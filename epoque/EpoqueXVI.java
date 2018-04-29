@@ -10,7 +10,7 @@ public class EpoqueXVI extends EpoqueFactory {
         return new BateauSimple(1, 5, null, random.nextBoolean());
     }
 
-    protected  Bateau getBateauLong() {
+    protected Bateau getBateauLong() {
         return new BateauSimple(1, 4, null, random.nextBoolean());
     }
 

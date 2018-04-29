@@ -2,11 +2,13 @@ package modele;
 
 import java.util.ArrayList;
 
+import epoque.EpoqueXVI;
 import test.Application;
 
 public class test {
 	public static void main(String[] args) {
-		testConstructeurPlateauListBateau();
+		//testConstructeurPlateauListBateau();
+		testAffichagePlateau();
     }
 	
 	public static void TestSubirTir(){
@@ -48,5 +50,11 @@ public class test {
 	    	   }
 	    	   System.out.println("");
 	       }
+	}
+	
+	private static void testAffichagePlateau() {
+		ArrayList<Bateau> listeBateaux = new EpoqueXVI().creerBateaux();
+		Plateau plateau = new Plateau(listeBateaux);
+		System.out.println(plateau.toString());
 	}
 }

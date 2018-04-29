@@ -11,7 +11,7 @@ public class CsvReader {
 	private BatailleNavale bataille;
 
 	public CsvReader() {
-		bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory());
+		//bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory());
 	}
 	
 	public BatailleNavale run(String nomFichier) {

@@ -60,12 +60,12 @@ public class Plateau {
 	/**
 	 * Constructeur qui g�n�re un plateau al�atoire
 	 */
-	public Plateau() {
+	/*public Plateau() {
 		Random r = new Random();
 		for (int i = 0; i < plateau.length; i++)
 			for (int j = 0; j < plateau[0].length; j++)
 				this.plateau[i][j] = r.nextInt(2);
-	}
+	}*/
 	
 	/**
 	 * Permet de verifier si un bateau se trouve à une postiion x, y.
@@ -115,5 +115,18 @@ public class Plateau {
 	 */
 	public int getValeur(int x, int y) {
 		return plateau[x][y];
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		for (int j = 0; j < TAILLELIGNE; j++) {
+			for (int i = 0; i < TAILLELIGNE; i++) {
+				sb.append(plateau[i][j] + " | ");
+			}
+			sb.append("\n");
+		}
+		
+		return sb.toString();
 	}
 }

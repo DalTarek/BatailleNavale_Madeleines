@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.AbstractDAOFactory;
 import epoque.EpoqueFactory;
+import modele.strategie.Strategie;
 import modele.strategie.TirAleatoire;
 
 public class BatailleNavale {
@@ -17,17 +18,20 @@ public class BatailleNavale {
 	private AbstractDAOFactory factory;
 	
 	
-	public BatailleNavale(AbstractDAOFactory factory) {
+	public BatailleNavale(AbstractDAOFactory factory, EpoqueFactory epoque, Strategie strat) {
 		this.factory = factory;
-
+		creerPartie(epoque, strat);
 	}
 	
-	public void creerPartie(EpoqueFactory epoqueFactory) {
-		Plateau plateauHumain = new Plateau();
-		humain = new JoueurHumain(plateauHumain, epoqueFactory.creerBateaux());
-		Plateau plateauOrdinateur = new Plateau();
-		ordinateur = new JoueurOrdinateur(plateauOrdinateur, epoqueFactory.creerBateaux());
-		joueurCourant = 0;
+	public void creerPartie(EpoqueFactory epoqueFactory, Strategie strat) {
+		ArrayList<Bateau> listeBateauxHumain = epoqueFactory.creerBateaux();
+		Plateau plateauHumain = new Plateau(listeBateauxHumain);
+		humain = new JoueurHumain(plateauHumain, listeBateauxHumain);
+		
+		ArrayList<Bateau> listeBateauxOrdi = epoqueFactory.creerBateaux();
+		Plateau plateauOrdinateur = new Plateau(listeBateauxOrdi);
+		ordinateur = new JoueurOrdinateur(plateauOrdinateur, listeBateauxOrdi, strat);
+		joueurCourant = JOUEURHUMAIN;
 	}
 	
 	/**

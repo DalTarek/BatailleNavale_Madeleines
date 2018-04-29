@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * TirCroix
  */
-public class TirCroix {
+public class TirCroix implements Strategie {
 
     public Position getProchainTir(ArrayList<Position> listeTirsReussis, ArrayList<Position> listeTirsRates) {
         Position p = null;

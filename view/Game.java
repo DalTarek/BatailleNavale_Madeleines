@@ -67,7 +67,7 @@ public class Game extends JPanel {
 
                     // save the state of the game in a file using DAO
                     // TODO
-                    bataille.sauvegarderPartie("test.csv" /*a changer*/);
+                    bataille.sauvegarderPartie(name);
                 }
 
                 // go back to main menu
@@ -87,11 +87,11 @@ public class Game extends JPanel {
                 // yes : shoot
                 // no : disable button
                 // TODO
-            	if (bataille.estValide(/* position */)) {
+            	/*if (bataille.estValide(/* position )) {
             		bataille.tirer();
             	} else {
             		shoot.setEnabled(false);
-            	}      		
+            	}*/      		
             }
         });
 

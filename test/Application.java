@@ -5,7 +5,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import dao.AbstractDAOFactory;
+import epoque.EpoqueXVI;
 import modele.BatailleNavale;
+import modele.strategie.TirAleatoire;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -22,7 +24,7 @@ public class Application extends JFrame {
 
     public Application() {
         super("Bataille Navale");
-        BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory());
+        BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory(), new EpoqueXVI(), new TirAleatoire());
         this.buildFrame(bataille);
     }
 

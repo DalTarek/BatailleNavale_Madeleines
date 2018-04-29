@@ -9,7 +9,7 @@ import modele.Plateau;
 /**
  * TirAleatoire
  */
-public class TirAleatoire {
+public class TirAleatoire implements Strategie {
 
     private Random random = new Random();
 
