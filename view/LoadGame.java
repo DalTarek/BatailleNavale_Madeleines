@@ -52,7 +52,6 @@ public class LoadGame extends JPanel implements Observer {
                 // discard extension of file
                 String name = f.getName().substring(0, f.getName().indexOf("."));
                 names.add(name);
-                bataille.ajouterNomPartieSauvegardee(name);
             }
         }
         
@@ -72,11 +71,12 @@ public class LoadGame extends JPanel implements Observer {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // load a game based on selected file name
+                String name = (String)savedGamesList.getSelectedValue();
+                bataille.chargerPartie(System.getProperty("user.dir") + "/sauvegardes/" + name + ".csv");
+
                 savedGamesList.clearSelection();
                 playButton.setEnabled(false);
-
-                // load a game based on selected file name
-                bataille.chargerPartie(System.getProperty("user.dir") + "/sauvegardes/" + savedGamesList.getSelectedValue() + ".csv");
 
                 // switch to the game
                 application.switchToPanel("jeu");
