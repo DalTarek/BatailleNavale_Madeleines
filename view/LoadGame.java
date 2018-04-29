@@ -47,11 +47,13 @@ public class LoadGame extends JPanel implements Observer {
         File savesDirectory = new File(currentDirectory + "/sauvegardes");
 
         ArrayList<String> names = new ArrayList<>();
-        for (File f : savesDirectory.listFiles()) {
-            // discard extension of file
-            String name = f.getName().substring(0, f.getName().indexOf("."));
-            names.add(name);
-            bataille.ajouterNomPartieSauvegardee(name);
+        if (savesDirectory.exists()) {
+            for (File f : savesDirectory.listFiles()) {
+                // discard extension of file
+                String name = f.getName().substring(0, f.getName().indexOf("."));
+                names.add(name);
+                bataille.ajouterNomPartieSauvegardee(name);
+            }
         }
         
         savedGamesList = new JList<>(names.toArray());
