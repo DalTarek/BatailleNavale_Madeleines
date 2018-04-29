@@ -37,6 +37,11 @@ public class BatailleNavale extends Observable {
 		Plateau plateauOrdinateur = new Plateau(listeBateauxOrdi);
 		ordinateur = new JoueurOrdinateur(plateauOrdinateur, listeBateauxOrdi, strat);
 		joueurCourant = JOUEURHUMAIN;
+		
+		System.out.println(humain.getPlateau());
+		System.out.println(ordinateur.getPlateau());
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -52,12 +57,16 @@ public class BatailleNavale extends Observable {
 			ordinateur.subirTir(caseSelectionnee);
 			if (!ordinateur.aPerdu())
 				changerJoueurCourant();
+				tirer();
 		} else {
 			Position p = ordinateur.recupPosTir();
 			humain.subirTir(p);
 			if (!humain.aPerdu())
 				changerJoueurCourant();
 		}
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**

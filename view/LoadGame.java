@@ -40,7 +40,7 @@ public class LoadGame extends JPanel {
         String currentDirectory = System.getProperty("user.dir");
 
         // get directory containing saves
-        File savesDirectory = new File(currentDirectory + "/sauvegardes");
+       /* File savesDirectory = new File(currentDirectory + "/sauvegardes");
         ArrayList<String> names = new ArrayList<>();
         for (File f : savesDirectory.listFiles()) {
             // discard extension of file
@@ -57,7 +57,7 @@ public class LoadGame extends JPanel {
             }
         });
 
-        this.add(savedGamesList);
+        this.add(savedGamesList);*/
 
         playButton = new JButton("Jouer");
         playButton.addActionListener(new ActionListener() {

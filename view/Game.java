@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Observer;
 import java.util.Observable;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -16,11 +17,14 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 import modele.BatailleNavale;
+import modele.Plateau;
 import test.Application;
 
 @SuppressWarnings("deprecation")
 public class Game extends JPanel implements Observer {
     final public static int BUTTONSNUMBER = 10;
+    private JButton[][] buttonPlateauOrdinateur = new JButton[10][10];
+    private JButton[][] buttonPlateauHumain = new JButton[10][10];
 
     private Application application;
     
@@ -34,48 +38,17 @@ public class Game extends JPanel implements Observer {
         this.buildPanel();
     }
 
-    private void buildPanel() {
-        /*JPanel tablesPanel = new JPanel(new GridLayout(2, 1));        
-
-        JTable playerTable = new JTable(BUTTONSNUMBER+1, BUTTONSNUMBER+1);
-
-        JTable computerTable = new JTable(BUTTONSNUMBER+1, BUTTONSNUMBER+1);
-
-        for (int i = 1; i < BUTTONSNUMBER+1; i++) {
-            playerTable.setValueAt(i, i, 0);
-            playerTable.setValueAt((char) (i-1 + 65), 0, i);
-            
-            computerTable.setValueAt(i, i, 0);
-            computerTable.setValueAt((char) (i-1 + 65), 0, i);
-        }
-
-        /* TEST */
-        /*TableCellRenderer renderer = new CustomTableCellRenderer();
-        try {
-			playerTable.setDefaultRenderer(Class.forName("java.lang.Integer"), renderer);
-			computerTable.setDefaultRenderer(Class.forName("java.lang.Integer"), renderer);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-        playerTable.setEnabled(false);
-        computerTable.setRowSelectionAllowed(false);
-
-        tablesPanel.add(computerTable);
-        tablesPanel.add(playerTable);
-
-        this.add(tablesPanel, BorderLayout.CENTER);*/
-    	
+    private void buildPanel() { 	
     	JPanel plateauxPanel = new JPanel(new GridLayout(2, 1));
     	
-    	Font font = new Font(Font.DIALOG, Font.BOLD, 11);
+    	Font font = new Font(Font.DIALOG, Font.BOLD, 8);
     	
     	JPanel computerPanel = new JPanel(new GridLayout(BUTTONSNUMBER + 1, BUTTONSNUMBER + 1));
     	for (int j = 0; j < BUTTONSNUMBER + 1; j++) {
     		for (int i = 0; i < BUTTONSNUMBER + 1; i++) {
     			if (j == 0) {
     				if (i != 0) {
-	    				JButton b = new JButton("" + (char)(i+64));
+	    				JButton b = new JButton("" + (char)(i+64));	    				
 	        			computerPanel.add(b);
     				} else {
     					JButton b = new JButton();
@@ -90,6 +63,7 @@ public class Game extends JPanel implements Observer {
     					}
     				} else {
 		    			JButton b = new JButton();
+		    			buttonPlateauOrdinateur[i-1][j-1] = b;
 		    			computerPanel.add(b);
     				}
     			}
@@ -119,6 +93,7 @@ public class Game extends JPanel implements Observer {
     					}
     				} else {
 		    			JButton b = new JButton();
+		    			buttonPlateauHumain[i-1][j-1] = b;
 		    			b.setEnabled(false);
 		    			playerPanel.add(b);
     				}
@@ -182,9 +157,9 @@ public class Game extends JPanel implements Observer {
         this.add(buttons, BorderLayout.EAST);
         
     }
-
+    int xCoord, yCoord;
     private class CustomListener implements ActionListener {
-        int xCoord, yCoord;
+        //int xCoord, yCoord;
 
         public CustomListener(int i, int j) {
             xCoord = i;
@@ -199,7 +174,20 @@ public class Game extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+		Plateau plateauHumain = bataille.getHumain().getPlateau();
+		for (int j = 0; j < plateauHumain.TAILLELIGNE; j++) {
+			for (int i = 0; i < plateauHumain.TAILLELIGNE; i++) {
+				switch (plateauHumain.getValeur(i, j)) {
+					case -1:
+						buttonPlateauHumain[i][j].setBackground(Color.RED);
+						break;
+					case 0:
+						buttonPlateauHumain[i][j].setBackground(Color.BLUE);
+						break;
+					case 1:
+						buttonPlateauHumain[i][j].setBackground(Color.BLACK);
+				}
+			}
+		}
 	}
 }
