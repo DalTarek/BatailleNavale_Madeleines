@@ -124,7 +124,7 @@ public class Game extends JPanel implements Observer {
     	
     	/* --------------------------------------- */
     	
-		JPanel buttons = new JPanel(new GridLayout(3, 1));
+		JPanel buttons = new JPanel(new GridLayout(2, 1));
 
         JButton exit = new JButton("Quitter");
         exit.addActionListener(new ActionListener(){
