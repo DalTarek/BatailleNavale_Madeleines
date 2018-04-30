@@ -21,7 +21,6 @@ public class Application extends JFrame {
 
     public Application() {
         super("Bataille Navale");
-        //BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory(), new EpoqueXVI(), new TirAleatoire());
         BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory());
         this.buildFrame(bataille);
     }
