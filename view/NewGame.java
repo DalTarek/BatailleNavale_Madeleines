@@ -91,6 +91,8 @@ public class NewGame extends JPanel {
 
         this.add(lists);
 
+        JPanel buttons = new JPanel(new GridLayout(2, 1));
+
         playButton = new JButton("Jouer");
         playButton.addActionListener(new ActionListener(){
         
@@ -128,7 +130,20 @@ public class NewGame extends JPanel {
             }
         });
         playButton.setEnabled(false);
+        
+        buttons.add(playButton);
 
-        this.add(playButton);
+        JButton previous = new JButton("Retour");
+        previous.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                application.switchToPanel("menu");
+            }
+        });
+
+        buttons.add(previous);
+
+        this.add(buttons);
     }
 }
