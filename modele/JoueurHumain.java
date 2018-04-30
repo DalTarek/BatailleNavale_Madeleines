@@ -29,7 +29,9 @@ public class JoueurHumain {
 				plateau.toucher(p);
 			}
 			
-			
+			listeCaseTouche.add(p); // on ajoute la position a la liste des cases touchees
+		} else {
+			listeCaseRate.add(p); // on ajoute la position a la liste des cases ratees
 		}
 	}
 	/**

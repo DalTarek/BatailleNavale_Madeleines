@@ -9,6 +9,7 @@ import modele.strategie.Strategie;
 public class JoueurOrdinateur {
 	ArrayList<Position> listeCaseTouche;
 	ArrayList<Position> listeCaseRate;
+
 	ArrayList<Bateau> listeBateau;
 	Plateau plateau;
 	
@@ -35,7 +36,9 @@ public class JoueurOrdinateur {
 				plateau.toucher(p);
 			}
 			
-			
+			listeCaseTouche.add(p); // on ajoute la position a la liste des cases touchees
+		} else {
+			listeCaseRate.add(p); // on ajoute la position a la liste des cases ratees
 		}
 	}
 	/**
@@ -88,6 +91,16 @@ public class JoueurOrdinateur {
 	}
 	
 	/**
+	 * Méthode qui vérifie si une position appartient a la liste des case déjà touché
+	 * @param p 
+	 * @return boolean true si la position appartient a la liste des cases touché, faux sinon
+	 */
+	public boolean caseDejaTouchee(Position p){
+		// la case a déjà été sélectionnée si elle est dans les cases ratées ou les cases réussies
+		return (listeCaseRate.contains(p) || listeCaseTouche.contains(p));
+	}
+	
+	/**
 	 * 
 	 * @return booolean true si le joueur ordinateur a perdu
 	 */
@@ -116,5 +129,13 @@ public class JoueurOrdinateur {
 	
 	public Plateau getPlateau() {
 		return plateau;
+	}
+	
+	public ArrayList<Position> getListeCaseTouche() {
+		return listeCaseTouche;
+	}
+
+	public ArrayList<Position> getListeCaseRate() {
+		return listeCaseRate;
 	}
 }

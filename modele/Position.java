@@ -69,4 +69,8 @@ public class Position implements Comparable {
 			}
 		}
 	}
+	
+	public String toString() {
+		return "(" + x + ", " + y + ")";
+	}
 }

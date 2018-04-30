@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observer;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,6 +19,7 @@ import javax.swing.table.TableCellRenderer;
 
 import modele.BatailleNavale;
 import modele.Plateau;
+import modele.Position;
 import test.Application;
 
 import java.io.File;
@@ -27,6 +29,8 @@ public class Game extends JPanel implements Observer {
     final public static int BUTTONSNUMBER = 10;
     private JButton[][] buttonPlateauOrdinateur = new JButton[10][10];
     private JButton[][] buttonPlateauHumain = new JButton[10][10];
+    
+    Position position = null;
 
     private Application application;
     
@@ -45,26 +49,31 @@ public class Game extends JPanel implements Observer {
     	
     	Font font = new Font(Font.DIALOG, Font.BOLD, 8);
     	
+    	// Panel pour le joueur Ordinateur
     	JPanel computerPanel = new JPanel(new GridLayout(BUTTONSNUMBER + 1, BUTTONSNUMBER + 1));
     	for (int j = 0; j < BUTTONSNUMBER + 1; j++) {
     		for (int i = 0; i < BUTTONSNUMBER + 1; i++) {
     			if (j == 0) {
-    				if (i != 0) {
-	    				JButton b = new JButton("" + (char)(i+64));	    				
+    				if (i != 0) { // boutons avec les lettres en haut
+	    				JButton b = new JButton("" + (char)(i+64));
+	    				b.setEnabled(false);
 	        			computerPanel.add(b);
-    				} else {
+    				} else { //bouton vide en haut a gauche
     					JButton b = new JButton();
+    					b.setEnabled(false);
     					computerPanel.add(b);
     				}
     			} else {
     				if (i == 0) {
-    					if (j != 0) {
+    					if (j != 0) { // boutons avec les chiffres a gauche
 	    					JButton b = new JButton("" + (j));
+	    					b.setEnabled(false);
 	    					b.setFont(font);
 	    	    			computerPanel.add(b);
     					}
-    				} else {
+    				} else { // boutons pour les bateaux
 		    			JButton b = new JButton();
+		    			b.addActionListener(new CustomListener(i-1, j-1));
 		    			buttonPlateauOrdinateur[i-1][j-1] = b;
 		    			computerPanel.add(b);
     				}
@@ -72,28 +81,29 @@ public class Game extends JPanel implements Observer {
     		}
     	}
     	
+    	// Panel pour le joueur humain
     	JPanel playerPanel = new JPanel(new GridLayout(BUTTONSNUMBER + 1, BUTTONSNUMBER + 1));
     	for (int j = 0; j < BUTTONSNUMBER + 1; j++) {
     		for (int i = 0; i < BUTTONSNUMBER + 1; i++) {
     			if (j == 0) {
-    				if (i != 0) {
+    				if (i != 0) { // boutons avec les lettres en haut
 	    				JButton b = new JButton("" + (char)(i+64));
 	    				b.setEnabled(false);
 	        			playerPanel.add(b);
-    				} else {
+    				} else { //bouton vide en haut a gauche
     					JButton b = new JButton();
     					b.setEnabled(false);
     					playerPanel.add(b);
     				}
     			} else {
     				if (i == 0) {
-    					if (j != 0) {
+    					if (j != 0) { // boutons avec les chiffres a gauche
 	    					JButton b = new JButton("" + (j));
 	    					b.setFont(font);
 	    					b.setEnabled(false);
 	    	    			playerPanel.add(b);
     					}
-    				} else {
+    				} else { // boutons pour les bateaux
 		    			JButton b = new JButton();
 		    			buttonPlateauHumain[i-1][j-1] = b;
 		    			b.setEnabled(false);
@@ -155,12 +165,13 @@ public class Game extends JPanel implements Observer {
                 // verify if it can be selected ( a shoot was done yet)
                 // yes : shoot
                 // no : disable button
-                // TODO
-            	/*if (bataille.estValide(/* position )) {
+            	System.out.println("Joueur courant" + bataille.getJoueurCourant());
+            	System.out.println(position);
+            	System.out.println(bataille.estValide(position));
+            	if (bataille.estValide(position)) {
+            		System.out.println("Joueur courant" + bataille.getJoueurCourant());
             		bataille.tirer();
-            	} else {
-            		shoot.setEnabled(false);
-            	}*/      		
+            	}
             }
         });
 
@@ -169,9 +180,9 @@ public class Game extends JPanel implements Observer {
         this.add(buttons, BorderLayout.EAST);
         
     }
-    int xCoord, yCoord;
+    
     private class CustomListener implements ActionListener {
-        //int xCoord, yCoord;
+        int xCoord, yCoord;
 
         public CustomListener(int i, int j) {
             xCoord = i;
@@ -180,7 +191,7 @@ public class Game extends JPanel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-
+        	position = new Position(xCoord, yCoord);
         }
     }
 
@@ -194,12 +205,28 @@ public class Game extends JPanel implements Observer {
 						buttonPlateauHumain[i][j].setBackground(Color.RED);
 						break;
 					case 0:
-						buttonPlateauHumain[i][j].setBackground(Color.BLUE);
+						buttonPlateauHumain[i][j].setBackground(Color.CYAN);
 						break;
 					case 1:
 						buttonPlateauHumain[i][j].setBackground(Color.BLACK);
 				}
 			}
 		}
+		
+		Plateau plateauOrdinateur = bataille.getOrdinateur().getPlateau();
+		ArrayList<Position> listeCaseTouchee = bataille.getOrdinateur().getListeCaseTouche();
+		ArrayList<Position> listeCaseRatee = bataille.getOrdinateur().getListeCaseRate();
+		for (int j = 0; j < plateauHumain.TAILLELIGNE; j++) {
+			for (int i = 0; i < plateauHumain.TAILLELIGNE; i++) {
+				if (listeCaseTouchee.contains(new Position(i, j)))
+					buttonPlateauOrdinateur[i][j].setBackground(Color.BLACK);
+				else
+					if (listeCaseRatee.contains(new Position(i, j)))
+						buttonPlateauOrdinateur[i][j].setBackground(Color.BLUE);
+					else
+						buttonPlateauOrdinateur[i][j].setBackground(Color.CYAN);
+			}
+		}
+
 	}
 }
