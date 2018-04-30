@@ -7,6 +7,13 @@ import java.util.Iterator;
 public class JoueurHumain {
 	ArrayList<Position> listeCaseTouche;
 	ArrayList<Position> listeCaseRate;
+
+	// Stocke le nombre de tirs réussis et ratés effectué par le joueur
+	// Ce n'est pas la même valeur que la taille des deux listes du dessus
+	// Puisque ces listes stockent aussi toutes les cases d'un bateau coulé,
+	int cptTirsRates = 0;
+	int cptTirsReussis = 0;
+
 	ArrayList<Bateau> listeBateau;
 	Plateau plateau;
 	
@@ -30,11 +37,12 @@ public class JoueurHumain {
 			}else{
 				plateau.toucher(p);
 				listeCaseTouche.add(p);
+				cptTirsReussis++;
 			}
 				
 		}else{
 			listeCaseRate.add(p);
-
+			cptTirsRates++;
 		}
 	}
 	/**
@@ -121,5 +129,13 @@ public class JoueurHumain {
 
 	public ArrayList<Position> getListeCaseRate() {
 		return listeCaseRate;
+	}
+
+	public int getNombreTirsRates() {
+		return cptTirsRates;
+	}
+
+	public int getNombreTirsReussis() {
+		return cptTirsReussis;
 	}
 }

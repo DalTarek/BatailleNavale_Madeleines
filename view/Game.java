@@ -14,8 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.BorderFactory;
 
 import modele.BatailleNavale;
 import modele.Plateau;
@@ -31,6 +30,7 @@ public class Game extends JPanel implements Observer {
 	private JButton[][] buttonPlateauHumain = new JButton[10][10];
 	
 	private JButton shoot;
+	private JLabel playerBadShootCount, playerGoodShootCount, computerBadShootCount, computerGoodShootCount;
     
     Position position = null;
 
@@ -124,7 +124,7 @@ public class Game extends JPanel implements Observer {
     	
     	/* --------------------------------------- */
     	
-		JPanel buttons = new JPanel(new GridLayout(2, 1));
+		JPanel controlPanel = new JPanel(new GridLayout(2, 1));
 
         JButton exit = new JButton("Quitter");
         exit.addActionListener(new ActionListener(){
@@ -158,7 +158,7 @@ public class Game extends JPanel implements Observer {
             }
         });
 
-        buttons.add(exit);
+        controlPanel.add(exit);
 
         shoot = new JButton("Feu!");
         shoot.addActionListener(new ActionListener(){
@@ -173,9 +173,39 @@ public class Game extends JPanel implements Observer {
 		
 		shoot.setEnabled(false);
 
-        buttons.add(shoot);
+        controlPanel.add(shoot);
 
-        this.add(buttons, BorderLayout.EAST);
+		this.add(controlPanel, BorderLayout.EAST);
+		
+		JPanel informations = new JPanel(new GridLayout(1, 2));
+
+		JPanel playerInformations = new JPanel(new GridLayout(3, 1));
+		playerInformations.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		playerInformations.add(new JLabel(" Joueur "));
+		
+		playerGoodShootCount = new JLabel(" Nombre de tirs réussis : " + 0);
+		playerInformations.add(playerGoodShootCount);
+
+		playerBadShootCount = new JLabel(" Nombre de tirs ratés : " + 0);		
+		playerInformations.add(playerBadShootCount);
+
+		informations.add(playerInformations);
+
+		JPanel computerInformations = new JPanel(new GridLayout(3, 1));
+		computerInformations.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		computerInformations.add(new JLabel(" Ordinateur "));
+
+		computerGoodShootCount = new JLabel(" Nombre de tirs réussis : " + 0);
+		computerInformations.add(computerGoodShootCount);
+
+		computerBadShootCount = new JLabel(" Nombre de tirs ratés : " + 0);
+		computerInformations.add(computerBadShootCount);
+
+		informations.add(computerInformations);
+
+		this.add(informations, BorderLayout.SOUTH);
         
     }
 
@@ -250,8 +280,14 @@ public class Game extends JPanel implements Observer {
 			}
 		}
 
+		playerGoodShootCount.setText(" Nombre de tirs réussis : " + bataille.getNombreTirsReussis(0));
+		playerBadShootCount.setText(" Nombre de tirs ratés : " + bataille.getNombreTirsRates(0));
+
+		computerGoodShootCount.setText(" Nombre de tirs réussis : " + bataille.getNombreTirsReussis(1));
+		computerBadShootCount.setText(" Nombre de tirs ratés : " + bataille.getNombreTirsRates(1));
+
 		if (bataille.partieTerminee()) {
-			String message = bataille.getJoueurCourant() == 0 ? "Vous avez gagné !" : "L'ordinateur a gagné !";
+			String message = bataille.getJoueurCourant() == 0 ? " Vous avez gagné ! " : " L'ordinateur a gagné ! ";
 			JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.INFORMATION_MESSAGE);
 
 			application.switchToPanel("menu");
