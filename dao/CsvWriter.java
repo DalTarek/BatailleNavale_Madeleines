@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import modele.BatailleNavale;
+import modele.Bateau;
 import modele.Plateau;
 import modele.Position;
 
@@ -20,7 +21,34 @@ public class CsvWriter {
 			String csvSeparator = "  |  ";
 			
 			// joueur courant
-			writer.append(bataille.getJoueurCourant() + "\n\n");
+			writer.append(bataille.getJoueurCourant() + "\n");
+			
+			// strategie du joueur ordinateur
+			writer.append(bataille.getOrdinateur().getStrategie() + "\n");
+			
+			// compteur tirs reussis pour le joueur ordinateur
+			writer.append(bataille.getOrdinateur().getNombreTirsReussis() + "\n");
+
+			// compteur tirs rates pour le joueur ordinateur
+			writer.append(bataille.getOrdinateur().getNombreTirsRates() + "\n");
+			
+			// liste des bateaux pour le joueur ordinateur
+			ArrayList<Bateau> bateauOrdi = bataille.getOrdinateur().getListeBateau();
+			for (Bateau b : bateauOrdi) {
+				writer.append(b.getOrientation() + " , " + b.getVie() + " , " + b.getLongueur() + ", " + b.getPosX() + " , " + b.getPosY() + "\n");
+			}
+			
+			// compteur tirs reussis pour le joueur humain
+			writer.append(bataille.getHumain().getNombreTirsReussis() + "\n");
+			
+			// compteur tirs rates pour le joueur humain
+			writer.append(bataille.getHumain().getNombreTirsRates() + "\n");
+			
+			// liste des bateaux pour le joueur humain
+			ArrayList<Bateau> bateauHumain = bataille.getHumain().getListeBateau();
+			for (Bateau b : bateauHumain) {
+				writer.append(b.getOrientation() + " , " + b.getVie() + " , " + b.getLongueur() + ", " + b.getPosX() + " , " + b.getPosY() + "\n");
+			}
 			
 			// liste des cases touchees par le joueur ordinateur		
 			writer.append("Liste des cases touchees par le joueur Ordinateur\n");

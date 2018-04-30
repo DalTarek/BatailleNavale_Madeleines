@@ -161,4 +161,12 @@ public class JoueurOrdinateur {
 	public int getNombreTirsRates() {
 		return cptTirsRates;
 	}
+	
+	public Strategie getStrategie() {
+		return strategie;
+	}
+	
+	public ArrayList<Bateau> getListeBateau() {
+		return listeBateau;
+	}
 }

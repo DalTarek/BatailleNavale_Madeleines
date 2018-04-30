@@ -90,4 +90,8 @@ public class TirCroix implements Strategie {
 
         return new Position(xSuivant, ySuivant);
     }
+    
+    public String toString() {
+    	return "Tir en croix";
+    }
 }

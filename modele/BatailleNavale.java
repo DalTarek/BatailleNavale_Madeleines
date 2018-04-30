@@ -161,11 +161,19 @@ public class BatailleNavale extends Observable {
 	public JoueurOrdinateur getOrdinateur() {
 		return ordinateur;
 	}
+	
+	public void setOrdinateur(JoueurOrdinateur ordi) {
+		this.ordinateur = ordi;
+	}
 
 	public JoueurHumain getHumain() {
 		return humain;
 	}
 
+	public void setHumain(JoueurHumain humain) {
+		this.humain = humain;
+	}
+	
 	public int getJoueurCourant() {
 		return joueurCourant;
 	}

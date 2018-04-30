@@ -29,7 +29,9 @@ public class CsvReader {
 					System.out.println(line);
 					bataille.setJoueurCourant(Integer.parseInt(line));
 				}
+				System.out.println(line);
 			}
+			
 			
 			// on recupere la liste des cases touchees par le joueur ordinateur
 			while (!(line = br.readLine()).matches("Liste des cases ratees par le joueur Ordinateur")) {

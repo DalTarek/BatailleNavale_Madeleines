@@ -139,4 +139,8 @@ public class JoueurHumain {
 	public int getNombreTirsReussis() {
 		return cptTirsReussis;
 	}
+	
+	public ArrayList<Bateau> getListeBateau() {
+		return listeBateau;
+	}
 }

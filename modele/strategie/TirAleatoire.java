@@ -25,4 +25,8 @@ public class TirAleatoire implements Strategie {
 
         return position;
     }
+    
+    public String toString() {
+    	return "Tir aleatoire";
+    }
 }
