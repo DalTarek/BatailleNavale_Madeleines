@@ -196,6 +196,7 @@ public class Game extends JPanel implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		Plateau plateauHumain = bataille.getHumain().getPlateau();
+		ArrayList<Position> listeCaseRateeH = bataille.getHumain().getListeCaseRate();
 		for (int j = 0; j < plateauHumain.TAILLELIGNE; j++) {
 			for (int i = 0; i < plateauHumain.TAILLELIGNE; i++) {
 				switch (plateauHumain.getValeur(i, j)) {
@@ -203,7 +204,10 @@ public class Game extends JPanel implements Observer {
 						buttonPlateauHumain[i][j].setBackground(Color.RED);
 						break;
 					case 0:
-						buttonPlateauHumain[i][j].setBackground(Color.CYAN);
+						if (listeCaseRateeH.contains(new Position(i, j)))
+							buttonPlateauHumain[i][j].setBackground(Color.BLUE);
+						else
+							buttonPlateauHumain[i][j].setBackground(Color.CYAN);
 						break;
 					case 1:
 						buttonPlateauHumain[i][j].setBackground(Color.BLACK);
@@ -217,7 +221,7 @@ public class Game extends JPanel implements Observer {
 		for (int j = 0; j < plateauHumain.TAILLELIGNE; j++) {
 			for (int i = 0; i < plateauHumain.TAILLELIGNE; i++) {
 				if (listeCaseTouchee.contains(new Position(i, j)))
-					buttonPlateauOrdinateur[i][j].setBackground(Color.BLACK);
+					buttonPlateauOrdinateur[i][j].setBackground(Color.RED);
 				else
 					if (listeCaseRatee.contains(new Position(i, j)))
 						buttonPlateauOrdinateur[i][j].setBackground(Color.BLUE);

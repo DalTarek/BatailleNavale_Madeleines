@@ -114,4 +114,12 @@ public class JoueurHumain {
 	public Plateau getPlateau() {
 		return plateau;
 	}
+	
+	public ArrayList<Position> getListeCaseTouche() {
+		return listeCaseTouche;
+	}
+
+	public ArrayList<Position> getListeCaseRate() {
+		return listeCaseRate;
+	}
 }
