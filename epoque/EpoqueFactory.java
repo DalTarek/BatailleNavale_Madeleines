@@ -14,6 +14,8 @@ public abstract class EpoqueFactory {
     public ArrayList<Bateau> creerBateaux() {
         ArrayList<Bateau> bateaux = new ArrayList<>();
 
+        // On ajoute les 5 bateaux du jeu de bataille navale
+        // à savoir : 1 de 5 cases, 1 de 4 cases, 2 de 3 cases, 1 de 2 cases
         bateaux.add(getBateauTresLong());
         bateaux.add(getBateauLong());
         bateaux.add(getBateauMoyen());
@@ -22,8 +24,12 @@ public abstract class EpoqueFactory {
         
         // Positionnement aléatoire des bateaux
 
+        // décider si on positionne les bateaux du début de la liste vers la fin
+        // Ou dans l'autre sens
+        // Pour ajouter un peu d'aléatoire
         boolean parcoursNormal = random.nextBoolean();
 
+        // Zone courante de positionnement d'un bateau
         int zone = 0;
         int tailleMoitieLigne = Plateau.TAILLELIGNE / 2;
 

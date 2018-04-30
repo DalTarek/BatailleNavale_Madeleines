@@ -14,9 +14,6 @@ import java.awt.Dimension;
 
 import view.*;
 
-/**
- * @author guillaume bergerot
- */
 public class Application extends JFrame {
 
     private CardLayout cardLayout;

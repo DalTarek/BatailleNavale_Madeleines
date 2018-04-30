@@ -164,6 +164,8 @@ public class BatailleNavale extends Observable {
 		notifyObservers();
 	}
 
+	/************************ GETTER & SETTER ********************/
+
 	public JoueurOrdinateur getOrdinateur() {
 		return ordinateur;
 	}
