@@ -50,9 +50,6 @@ public class BatailleNavale extends Observable {
 		ordinateur = new JoueurOrdinateur(plateauOrdinateur, listeBateauxOrdi, strat);
 		joueurCourant = JOUEURHUMAIN;
 		
-		//System.out.println(ordinateur.getPlateau());
-		//System.out.println(humain.getPlateau());
-		
 		setChanged();
 		notifyObservers();
 	}
