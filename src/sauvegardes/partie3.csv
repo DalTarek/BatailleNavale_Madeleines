@@ -1,0 +1,62 @@
+0
+Plateau joueur humain
+0|1|0|0|0|0|0|0|0|0|
+0|-1|0|0|0|0|0|0|0|0|
+0|1|0|0|0|0|0|0|0|0|
+0|1|0|0|0|1|1|1|1|0|
+0|1|0|0|1|0|0|0|0|0|
+1|1|1|0|1|0|0|0|1|0|
+0|0|0|0|0|0|0|0|1|0|
+0|0|0|0|0|0|0|0|1|0|
+0|0|0|0|0|0|0|0|0|0|
+0|0|0|0|0|0|0|0|0|0|
+Bateaux humain
+1,5,1,0,true
+2,4,5,3,false
+2,3,0,5,false
+2,3,8,5,true
+2,2,4,4,true
+Cases touchees ordinateur
+1,1
+Cases ratees ordinateur
+0,0
+2,0
+4,0
+6,0
+8,0
+Tirs reussis humain
+1
+Tirs rates humain
+5
+Plateau joueur ordinateur
+0|0|0|0|0|1|1|1|1|0|
+1|1|1|1|1|0|0|0|0|0|
+0|0|0|0|0|0|0|0|0|0|
+0|0|0|0|0|0|0|0|0|0|
+0|0|0|0|-2|0|0|0|0|0|
+0|0|0|0|-2|0|0|0|0|0|
+0|0|0|1|0|0|0|0|0|0|
+0|0|0|1|0|0|0|0|0|0|
+0|0|0|1|0|0|1|1|1|0|
+0|0|0|0|0|0|0|0|0|0|
+Bateaux ordinateur
+2,5,0,1,false
+2,4,5,0,false
+2,3,3,6,true
+2,3,6,8,false
+0,2,4,4,true
+Strategie ordinateur
+TirCroix
+Cases touchees humain
+4,5
+4,4
+4,5
+Cases ratees humain
+1,5
+6,3
+5,6
+5,5
+Tirs reussis ordinateur
+2
+Tirs rates ordinateur
+4

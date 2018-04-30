@@ -1,0 +1,24 @@
+<project name="BatailleNavale_Madeleines" basedir="." default="run">
+  <target name="clean">
+    <delete dir="bin"/>
+    <delete dir="exe"/>
+  </target>
+  
+  <target name="compile" depends="clean">
+    <mkdir dir="bin"/>
+    <javac srcdir="src" destdir="bin" encoding="iso-8859-1"/>
+  </target>
+  
+  <target name="jar" depends="compile">
+    <mkdir dir="exe"/>
+    <jar destfile="exe/BatailleNavale.jar" basedir="bin">
+      <manifest>
+	<attribute name="Main-Class" value="test.Application"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="run" depends="jar">
+    <java jar="exe/BatailleNavale.jar" fork="true"/>
+  </target>
+</project>
