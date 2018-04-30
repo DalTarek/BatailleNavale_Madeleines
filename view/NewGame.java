@@ -29,7 +29,7 @@ import test.*;
 
 public class NewGame extends JPanel {
     final private static String[] ages = {"EpoqueXVI", "EpoqueXX"};
-    final private static String[] strategies = {"Tir aléatoire", "Tir en croix"};
+    final private static String[] strategies = {"Tir aleatoire", "Tir en croix"};
 
     private Application application;
 
@@ -86,12 +86,12 @@ public class NewGame extends JPanel {
         
             @Override
             public void actionPerformed(ActionEvent e) {
-                //epoque/stratégie
+                //epoque/strategie
                 
                 EpoqueFactory epoque = null;
                 Strategie strategie = null;
 
-                // verification de l'époque                 
+                // verification de l'epoque                 
                 String ageListValue = (String)ageList.getSelectedValue();
                 if (ageListValue == ages[0]) {
                     epoque = new EpoqueXVI();

@@ -3,6 +3,8 @@ package modele;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import java.io.File;
+
 import dao.AbstractDAOFactory;
 import epoque.EpoqueFactory;
 import modele.strategie.Strategie;
@@ -28,6 +30,21 @@ public class BatailleNavale extends Observable {
 
 	public BatailleNavale(AbstractDAOFactory factory) {
 		this.factory = factory;
+
+		// On stocke le nom des parties déjà présentes dans le dossier de sauvegarde
+		String currentDirectory = System.getProperty("user.dir");
+
+        // dossier contenant les sauvegardes
+        File savesDirectory = new File(currentDirectory + "/sauvegardes");
+
+        ArrayList<String> names = new ArrayList<>();
+        if (savesDirectory.exists()) {
+            for (File f : savesDirectory.listFiles()) {
+                // On enlève l'extension de fichier au nom
+                String name = f.getName().substring(0, f.getName().indexOf("."));
+                nomPartiesSauvegardees.add(name);
+            }
+        }
 	}
 	
 	public void creerPartie(EpoqueFactory epoqueFactory, Strategie strat) {
