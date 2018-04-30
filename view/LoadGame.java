@@ -67,6 +67,8 @@ public class LoadGame extends JPanel implements Observer {
 
         this.add(savedGamesList);
 
+        JPanel buttons = new JPanel(new GridLayout(2, 1));
+
         playButton = new JButton("Jouer");
         playButton.addActionListener(new ActionListener() {
             @Override
@@ -84,7 +86,21 @@ public class LoadGame extends JPanel implements Observer {
         });
 
         playButton.setEnabled(false);
-        this.add(playButton);
+
+        buttons.add(playButton);
+
+        JButton previous = new JButton("Retour");
+        previous.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                application.switchToPanel("menu");
+            }
+        });
+
+        buttons.add(previous);
+
+        this.add(buttons);
     }
 
     @Override
