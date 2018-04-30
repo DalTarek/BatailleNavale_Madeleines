@@ -18,16 +18,10 @@ public class BatailleNavale extends Observable {
 	private static int JOUEURHUMAIN = 0, JOUEURORDI = 1;
 
 	private ArrayList<String> nomPartiesSauvegardees = new ArrayList<>();
-	
-	
+		
 	private AbstractDAOFactory factory;
-	
-	
-	public BatailleNavale(AbstractDAOFactory factory, EpoqueFactory epoque, Strategie strat) {
-		this.factory = factory;
-		creerPartie(epoque, strat);
-	}
 
+	
 	public BatailleNavale(AbstractDAOFactory factory) {
 		this.factory = factory;
 

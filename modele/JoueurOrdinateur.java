@@ -136,6 +136,10 @@ public class JoueurOrdinateur {
 		return plateau;
 	}
 	
+	public void setPlateau(Plateau p) {
+		this.plateau = p;
+	}
+	
 	public ArrayList<Position> getListeCaseTouche() {
 		return listeCaseTouche;
 	}
