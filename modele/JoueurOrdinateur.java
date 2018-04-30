@@ -157,9 +157,17 @@ public class JoueurOrdinateur {
 	public int getNombreTirsReussis() {
 		return cptTirsReussis;
 	}
+	
+	public void setNombreTirsReussis(int n) {
+		cptTirsReussis = n;
+	}
 
 	public int getNombreTirsRates() {
 		return cptTirsRates;
+	}
+	
+	public void setNombreTirsRates(int n) {
+		cptTirsRates = n;
 	}
 	
 	public Strategie getStrategie() {

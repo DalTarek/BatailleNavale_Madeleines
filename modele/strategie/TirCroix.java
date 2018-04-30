@@ -92,6 +92,6 @@ public class TirCroix implements Strategie {
     }
     
     public String toString() {
-    	return "Tir en croix";
+    	return "TirCroix";
     }
 }

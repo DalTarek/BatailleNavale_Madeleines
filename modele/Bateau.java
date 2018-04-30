@@ -58,7 +58,7 @@ public abstract class Bateau {
     }
     
     public String toString() {
-    	return "(" + vertical + ", " + vie + ", " + longueur + ", " + position + ")";
+    	return "(" + vie + ", " + longueur + ", " + position + ", " + vertical + ")";
     }
 
 }

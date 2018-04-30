@@ -135,9 +135,17 @@ public class JoueurHumain {
 	public int getNombreTirsRates() {
 		return cptTirsRates;
 	}
+	
+	public void setNombreTirsRates(int n) {
+		cptTirsRates = n;
+	}
 
 	public int getNombreTirsReussis() {
 		return cptTirsReussis;
+	}
+	
+	public void setNombreTirsReussis(int n) {
+		cptTirsReussis = n;
 	}
 	
 	public ArrayList<Bateau> getListeBateau() {

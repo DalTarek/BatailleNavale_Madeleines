@@ -27,6 +27,6 @@ public class TirAleatoire implements Strategie {
     }
     
     public String toString() {
-    	return "Tir aleatoire";
+    	return "TirAleatoire";
     }
 }
