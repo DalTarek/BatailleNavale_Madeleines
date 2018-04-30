@@ -27,14 +27,13 @@ public class CsvReader {
 		BufferedReader br = null;
 		String line = "";
 		String csvPositionSeparator = " , ";
-		String csvPlateauSeparator = " | ";
+		String csvPlateauSeparator = "#";
 		try {
 			br = new BufferedReader(new FileReader(nomFichier));
 			
 			// on recupere le joueur courant
 			while (!(line = br.readLine()).matches("Plateau joueur humain")) {
 				if ((line == "0") || (line == "1")) {
-					System.out.println(line);
 					bataille.setJoueurCourant(Integer.parseInt(line));
 				}
 			}
@@ -44,10 +43,13 @@ public class CsvReader {
 			int j = 0;
 			while (!(line = br.readLine()).matches("Bateaux humain")) {
 				String[] ligne = line.split(csvPlateauSeparator);
+				
+				for (String l : ligne)
+					System.out.print(l);
 				for (int i = 0; i < t.length; i++) {
-					System.out.println(ligne[i]);
 					t[i][j] = Integer.parseInt(ligne[i]);
 				}
+				System.out.println("\n");
 				j++;
 			}
 			Plateau p = new Plateau(t);
@@ -131,12 +133,12 @@ public class CsvReader {
 			}
 
 			// on recupere les tirs reussis du joueur ordinateur
-			while (!(line = br.readLine()).matches("Tirs rates humain")) {
+			while (!(line = br.readLine()).matches("Tirs rates ordinateur")) {
 				ordinateur.setNombreTirsReussis(Integer.parseInt(line));
 			}
 
 			// on recupere les tirs rates du joueur ordinateur
-			while (!(line = br.readLine()).matches("Plateau joueur ordinateur")) {
+			while ((line = br.readLine()) != null) {
 				ordinateur.setNombreTirsRates(Integer.parseInt(line));
 			}
 

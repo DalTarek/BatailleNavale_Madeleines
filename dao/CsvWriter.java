@@ -18,7 +18,7 @@ public class CsvWriter {
 	private static void genererFichierCsv(BatailleNavale bataille, String nomFichier) {
 		try {
 			FileWriter writer = new FileWriter(nomFichier);
-			String csvSeparator = "  |  ";
+			String csvSeparator = "#";
 			
 			// joueur courant
 			writer.append(bataille.getJoueurCourant() + "\n");

@@ -184,10 +184,10 @@ public class Game extends JPanel implements Observer {
 
 		playerInformations.add(new JLabel(" Joueur "));
 		
-		playerGoodShootCount = new JLabel(" Nombre de tirs réussis : " + 0);
+		playerGoodShootCount = new JLabel(" Nombre de tirs reussis : " + 0);
 		playerInformations.add(playerGoodShootCount);
 
-		playerBadShootCount = new JLabel(" Nombre de tirs ratés : " + 0);		
+		playerBadShootCount = new JLabel(" Nombre de tirs rates : " + 0);		
 		playerInformations.add(playerBadShootCount);
 
 		informations.add(playerInformations);
@@ -197,10 +197,10 @@ public class Game extends JPanel implements Observer {
 
 		computerInformations.add(new JLabel(" Ordinateur "));
 
-		computerGoodShootCount = new JLabel(" Nombre de tirs réussis : " + 0);
+		computerGoodShootCount = new JLabel(" Nombre de tirs reussis : " + 0);
 		computerInformations.add(computerGoodShootCount);
 
-		computerBadShootCount = new JLabel(" Nombre de tirs ratés : " + 0);
+		computerBadShootCount = new JLabel(" Nombre de tirs rates : " + 0);
 		computerInformations.add(computerBadShootCount);
 
 		informations.add(computerInformations);

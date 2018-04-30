@@ -50,8 +50,8 @@ public class BatailleNavale extends Observable {
 		ordinateur = new JoueurOrdinateur(plateauOrdinateur, listeBateauxOrdi, strat);
 		joueurCourant = JOUEURHUMAIN;
 		
-		System.out.println(ordinateur.getPlateau());
-		System.out.println(humain.getPlateau());
+		//System.out.println(ordinateur.getPlateau());
+		//System.out.println(humain.getPlateau());
 		
 		setChanged();
 		notifyObservers();
@@ -155,7 +155,13 @@ public class BatailleNavale extends Observable {
 	 * Permet de charger une partie sauvegardee
 	 */
 	public void chargerPartie(String nomFichier) {
-		factory.getBatailleDAO().chargerPartie(nomFichier);
+		BatailleNavale bataille = factory.getBatailleDAO().chargerPartie(nomFichier);
+		this.humain = bataille.getHumain();
+		this.ordinateur = bataille.getOrdinateur();
+		this.joueurCourant = bataille.getJoueurCourant();
+		
+		setChanged();
+		notifyObservers();
 	}
 
 	public JoueurOrdinateur getOrdinateur() {
