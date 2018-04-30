@@ -37,7 +37,6 @@ public class BatailleNavale extends Observable {
         // dossier contenant les sauvegardes
         File savesDirectory = new File(currentDirectory + "/sauvegardes");
 
-        ArrayList<String> names = new ArrayList<>();
         if (savesDirectory.exists()) {
             for (File f : savesDirectory.listFiles()) {
                 // On enlève l'extension de fichier au nom
@@ -97,7 +96,7 @@ public class BatailleNavale extends Observable {
 			}
 		} else {
 			// L'ordinateur recupere la prochaine position de tir
-			Position p = ordinateur.recupPosTir();
+			Position p = ordinateur.recupPosTir(humain.getListeCaseTouche(), humain.getListeCaseRate());
 			// L'humain subit le tir
 			humain.subirTir(p);
 			if (!humain.aPerdu()) {

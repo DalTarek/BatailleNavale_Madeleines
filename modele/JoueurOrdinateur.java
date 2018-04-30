@@ -128,8 +128,8 @@ public class JoueurOrdinateur {
 	 * 
 	 * @return la position du prochain tir de l'ordinateur sur le plateau
 	 */
-	public Position recupPosTir() {
-		return strategie.getProchainTir(listeCaseTouche, listeCaseRate);
+	public Position recupPosTir(ArrayList<Position> casesTouchees, ArrayList<Position> casesRatees) {
+		return strategie.getProchainTir(casesTouchees, casesRatees);
 	}
 	
 	public Plateau getPlateau() {
