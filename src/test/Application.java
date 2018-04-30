@@ -14,9 +14,6 @@ import java.awt.Dimension;
 
 import view.*;
 
-/**
- * @author guillaume bergerot
- */
 public class Application extends JFrame {
 
     private CardLayout cardLayout;
@@ -24,6 +21,7 @@ public class Application extends JFrame {
 
     public Application() {
         super("Bataille Navale");
+        //BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory(), new EpoqueXVI(), new TirAleatoire());
         BatailleNavale bataille = new BatailleNavale(AbstractDAOFactory.getAbstractDAOFactory());
         this.buildFrame(bataille);
     }

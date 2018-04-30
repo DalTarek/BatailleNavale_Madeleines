@@ -100,6 +100,7 @@ public class JoueurOrdinateur {
 			}
 		}
 		if(trouve){
+			System.out.println("bateau touché : "+i);
 			return i;
 		}else{
 			return -1;
