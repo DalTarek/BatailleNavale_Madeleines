@@ -43,13 +43,9 @@ public class CsvReader {
 			int j = 0;
 			while (!(line = br.readLine()).matches("Bateaux humain")) {
 				String[] ligne = line.split(csvPlateauSeparator);
-				
-				for (String l : ligne)
-					System.out.print(l);
 				for (int i = 0; i < t.length; i++) {
 					t[i][j] = Integer.parseInt(ligne[i]);
 				}
-				System.out.println("\n");
 				j++;
 			}
 			Plateau p = new Plateau(t);
