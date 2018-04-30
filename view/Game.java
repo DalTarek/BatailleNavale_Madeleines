@@ -28,7 +28,9 @@ import java.io.File;
 public class Game extends JPanel implements Observer {
     final public static int BUTTONSNUMBER = 10;
     private JButton[][] buttonPlateauOrdinateur = new JButton[10][10];
-    private JButton[][] buttonPlateauHumain = new JButton[10][10];
+	private JButton[][] buttonPlateauHumain = new JButton[10][10];
+	
+	private JButton shoot;
     
     Position position = null;
 
@@ -77,7 +79,6 @@ public class Game extends JPanel implements Observer {
 		    			JButton b = new JButton();
 		    			b.addActionListener(new CustomListener(i-1, j-1));
 		    			buttonPlateauOrdinateur[i-1][j-1] = b;
-		    			b.addActionListener(new CustomListener(i-1,j-1));
 		    			computerPanel.add(b);
     				}
     			}
@@ -109,7 +110,7 @@ public class Game extends JPanel implements Observer {
     				} else { // boutons pour les bateaux
 		    			JButton b = new JButton();
 		    			buttonPlateauHumain[i-1][j-1] = b;
-		    			b.setEnabled(false);
+						b.setEnabled(false);
 		    			playerPanel.add(b);
     				}
     			}
@@ -123,7 +124,7 @@ public class Game extends JPanel implements Observer {
     	
     	/* --------------------------------------- */
     	
-        JPanel buttons = new JPanel(new GridLayout(2, 1));
+		JPanel buttons = new JPanel(new GridLayout(3, 1));
 
         JButton exit = new JButton("Quitter");
         exit.addActionListener(new ActionListener(){
@@ -159,16 +160,17 @@ public class Game extends JPanel implements Observer {
 
         buttons.add(exit);
 
-        JButton shoot = new JButton("Feu!");
+        shoot = new JButton("Feu!");
         shoot.addActionListener(new ActionListener(){
         
             @Override
             public void actionPerformed(ActionEvent e) {  	
-               if(bataille.estValide(courantPos)){
-            	   bataille.tirer();
-               }
+				buttonPlateauOrdinateur[courantPos.getX()][courantPos.getY()].setBackground(Color.CYAN);
+				bataille.tirer();
             }
-        });
+		});
+		
+		shoot.setEnabled(false);
 
         buttons.add(shoot);
 
@@ -187,8 +189,19 @@ public class Game extends JPanel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
+			if (courantPos != null
+				&& buttonPlateauOrdinateur[courantPos.getX()][courantPos.getY()].getBackground().equals(Color.LIGHT_GRAY)) {
 
-        	courantPos=new Position(xCoord,yCoord);
+				buttonPlateauOrdinateur[courantPos.getX()][courantPos.getY()].setBackground(Color.CYAN);			
+			}
+			courantPos=new Position(xCoord,yCoord);
+
+			if(bataille.estValide(courantPos)){
+				buttonPlateauOrdinateur[xCoord][yCoord].setBackground(Color.LIGHT_GRAY);
+				shoot.setEnabled(true);
+			} else {
+				shoot.setEnabled(false);
+			}
 
         }
     }
@@ -228,6 +241,13 @@ public class Game extends JPanel implements Observer {
 					else
 						buttonPlateauOrdinateur[i][j].setBackground(Color.CYAN);
 			}
+		}
+
+		if (bataille.partieTerminee()) {
+			String joueurGagnant = bataille.getJoueurCourant() == 0 ? "humain" : "ordinateur";
+			JOptionPane.showMessageDialog(null, "Le joueur " + joueurGagnant + " a gagné !", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+			application.switchToPanel("menu");
 		}
 
 	}

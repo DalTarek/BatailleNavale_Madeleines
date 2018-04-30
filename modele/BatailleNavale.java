@@ -72,21 +72,46 @@ public class BatailleNavale extends Observable {
 		caseSelectionnee = p;
 	}
 
+	/**
+	 * permet aux joueurs de tirer
+	 */
 	public void tirer() {
 		if (joueurCourant == JOUEURHUMAIN) {
+			// L'ordinateur subit le tir a la case que le joueur a selectionne
+			// dans l'interface graphique
 			ordinateur.subirTir(caseSelectionnee);
-			if (!ordinateur.aPerdu())
+			if (!ordinateur.aPerdu()) {
+				// On change le joueur qui doit jouer
 				changerJoueurCourant();
+
+				// On notifie l'interface graphique du tir du joueur humain
+				setChanged();
+				notifyObservers();
+
+				// L'ordinateur joue son tour directement
 				tirer();
+			} else {
+				// On notifie l'interface graphique du tir du joueur humain
+				setChanged();
+				notifyObservers();
+			}
 		} else {
+			// L'ordinateur recupere la prochaine position de tir
 			Position p = ordinateur.recupPosTir();
+			// L'humain subit le tir
 			humain.subirTir(p);
-			if (!humain.aPerdu())
+			if (!humain.aPerdu()) {
+				// On change le joueur courant, c'est a l'humain de jouer
 				changerJoueurCourant();
+
+				setChanged();
+				notifyObservers();
+			} else {
+				// On notifie l'interface graphique du tir du joueur humain
+				setChanged();
+				notifyObservers();
+			}
 		}
-		
-		setChanged();
-		notifyObservers();
 	}
 	
 	/**
@@ -117,6 +142,13 @@ public class BatailleNavale extends Observable {
 			stockCaseSelectionnee(p);
 		
 		return valide;
+	}
+
+	/**
+	 * Indique si la partie est terminee
+	 */
+	public boolean partieTerminee() {
+		return (ordinateur.aPerdu() || humain.aPerdu());
 	}
 	
 	/**
