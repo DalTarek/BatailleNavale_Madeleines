@@ -280,11 +280,11 @@ public class Game extends JPanel implements Observer {
 			}
 		}
 
-		playerGoodShootCount.setText(" Nombre de tirs réussis : " + bataille.getNombreTirsReussis(0));
-		playerBadShootCount.setText(" Nombre de tirs ratés : " + bataille.getNombreTirsRates(0));
+		playerGoodShootCount.setText(" Nombre de tirs réussis : " + bataille.getNombreTirsReussis(1));
+		playerBadShootCount.setText(" Nombre de tirs ratés : " + bataille.getNombreTirsRates(1));
 
-		computerGoodShootCount.setText(" Nombre de tirs réussis : " + bataille.getNombreTirsReussis(1));
-		computerBadShootCount.setText(" Nombre de tirs ratés : " + bataille.getNombreTirsRates(1));
+		computerGoodShootCount.setText(" Nombre de tirs réussis : " + bataille.getNombreTirsReussis(0));
+		computerBadShootCount.setText(" Nombre de tirs ratés : " + bataille.getNombreTirsRates(0));
 
 		if (bataille.partieTerminee()) {
 			String message = bataille.getJoueurCourant() == 0 ? " Vous avez gagné ! " : " L'ordinateur a gagné ! ";

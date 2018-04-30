@@ -37,9 +37,10 @@ public class JoueurHumain {
 			}else{
 				plateau.toucher(p);
 				listeCaseTouche.add(p);
-				cptTirsReussis++;
 			}
-				
+			
+			cptTirsReussis++;
+			
 		}else{
 			listeCaseRate.add(p);
 			cptTirsRates++;
