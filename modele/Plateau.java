@@ -87,15 +87,21 @@ public class Plateau {
 	 * Permet de mettre à jour le plateau quand un bateau est coulé.
 	 * @param b
 	 */
-	public void coulerBateau(Bateau b){
-		//la position du bateau est la case la plus en haut a gauche du bateau. 
-		//		******************
-		//		***BBB****B*******
-		//		**********B*******
-		//		**********B*******
-		//		**********B*******
-		//On determine si le bateau est horizontal ou vertical
-		//if(plateau)
+	public void coulerBateau(Bateau b, ArrayList<Position> listTouche){
+		int longueur=b.getLongueur();
+		boolean orientation=b.getOrientation();
+		Position posCourant=b.getPos();
+		if(orientation){
+			for(int y=posCourant.getY();y<posCourant.getY()+longueur;y++){		
+				this.plateau[posCourant.getX()][y]=-1;
+				listTouche.add(new Position(posCourant.getX(),y));
+			}
+		}else{
+			for(int x=posCourant.getX();x<posCourant.getX()+longueur;x++){		
+				this.plateau[x][posCourant.getY()]=-1;
+				listTouche.add(new Position(x,posCourant.getY()));
+			}
+		}
 	}
 	/**
 	 * Permet de mettre à jour le plateau quand un bateau est touché

@@ -24,12 +24,18 @@ public class JoueurHumain {
 			//indiceB ne peux pas être =-1
 			assert(indiceB!=-1);
 			if(listeBateau.get(indiceB).diminuerVie()){
-				plateau.coulerBateau(listeBateau.get(indiceB));
+				//on met a jour la liste des cases touche dans la méthode CoulerBateau : (il y a plusieurs cases touche)
+				plateau.coulerBateau(listeBateau.get(indiceB),listeCaseTouche);
+				
 			}else{
 				plateau.toucher(p);
+				listeCaseTouche.add(p);
 			}
 			
 			
+			
+		}else{
+			listeCaseRate.add(p);
 		}
 	}
 	/**
@@ -55,7 +61,6 @@ public class JoueurHumain {
 			//orientation du bateau : VRAI si vertical, FAUX sinon
 			boolean orientation=listeBateau.get(i).getOrientation();
 			if(orientation){// si le bateau est vertical
-				System.out.println("coucou");
 				for(int l=0;l<largeurBateau;l++){//On parcourt la largeur du bateau jusqu'a a atteindre la position p passé en paramètre
 					Position tempy=new Position(pos);	
 					tempy.setY(tempy.getY()+l);
@@ -74,7 +79,6 @@ public class JoueurHumain {
 			}
 		}
 		if(trouve){
-			System.out.println("bateau touché : "+i);
 			return i;
 		}else{
 			return -1;

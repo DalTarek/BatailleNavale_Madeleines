@@ -30,12 +30,17 @@ public class JoueurOrdinateur {
 			//indiceB ne peux pas être =-1
 			assert(indiceB!=-1);
 			if(listeBateau.get(indiceB).diminuerVie()){
-				plateau.coulerBateau(listeBateau.get(indiceB));
+				//on met a jour la liste des cases touche dans la méthode CoulerBateau parcequ'il y a plusieurs cases touche
+				plateau.coulerBateau(listeBateau.get(indiceB),listeCaseTouche);
+				
 			}else{
 				plateau.toucher(p);
+				listeCaseTouche.add(p);
 			}
 			
 			
+		}else{
+			listeCaseRate.add(p);
 		}
 	}
 	/**
@@ -104,6 +109,16 @@ public class JoueurOrdinateur {
 		}
 
 		return aPerdu;
+	}
+	
+	/**
+	 * Méthode qui vérifie si une position appartient a la liste des case déjà touché
+	 * @param p 
+	 * @return boolean true si la position appartient a la liste des cases touché, faux sinon
+	 */
+	public boolean caseDejaTouchee(Position p){
+		// la case a déjà été sélectionnée si elle est dans les cases ratées ou les cases réussies
+		return (listeCaseRate.contains(p) || listeCaseTouche.contains(p));
 	}
 	
 	/**

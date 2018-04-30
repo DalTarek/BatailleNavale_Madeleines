@@ -39,9 +39,10 @@ public class BatailleNavale extends Observable {
 		Plateau plateauOrdinateur = new Plateau(listeBateauxOrdi);
 		ordinateur = new JoueurOrdinateur(plateauOrdinateur, listeBateauxOrdi, strat);
 		joueurCourant = JOUEURHUMAIN;
-		
-		System.out.println(humain.getPlateau());
 		System.out.println(ordinateur.getPlateau());
+		System.out.println(humain.getPlateau());
+
+	
 		setChanged();
 		notifyObservers();
 	}
@@ -87,9 +88,11 @@ public class BatailleNavale extends Observable {
 	 * @return vrai si la case est valide
 	 */
 	public boolean estValide(Position p) {
+
 		boolean valide = false;
-		if (joueurCourant == JOUEURHUMAIN) {
-			valide = humain.caseDejaTouchee(p);
+		if (joueurCourant == JOUEURHUMAIN) {	
+	       
+			valide = !ordinateur.caseDejaTouchee(p);
 		}
 		
 		if (valide)

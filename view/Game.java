@@ -18,6 +18,7 @@ import javax.swing.table.TableCellRenderer;
 
 import modele.BatailleNavale;
 import modele.Plateau;
+import modele.Position;
 import test.Application;
 
 import java.io.File;
@@ -31,6 +32,8 @@ public class Game extends JPanel implements Observer {
     private Application application;
     
     private BatailleNavale bataille;
+    
+    Position courantPos;
 
     public Game(Application app, BatailleNavale bataille) {
         super(new BorderLayout());
@@ -66,6 +69,7 @@ public class Game extends JPanel implements Observer {
     				} else {
 		    			JButton b = new JButton();
 		    			buttonPlateauOrdinateur[i-1][j-1] = b;
+		    			b.addActionListener(new CustomListener(i-1,j-1));
 		    			computerPanel.add(b);
     				}
     			}
@@ -151,16 +155,11 @@ public class Game extends JPanel implements Observer {
         
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Get the selection of player table
-                // verify if it can be selected ( a shoot was done yet)
-                // yes : shoot
-                // no : disable button
-                // TODO
-            	/*if (bataille.estValide(/* position )) {
-            		bataille.tirer();
-            	} else {
-            		shoot.setEnabled(false);
-            	}*/      		
+        	
+               if(bataille.estValide(courantPos)){
+            	   bataille.tirer();
+               }
+    
             }
         });
 
@@ -169,9 +168,9 @@ public class Game extends JPanel implements Observer {
         this.add(buttons, BorderLayout.EAST);
         
     }
-    int xCoord, yCoord;
+
     private class CustomListener implements ActionListener {
-        //int xCoord, yCoord;
+        int xCoord, yCoord;
 
         public CustomListener(int i, int j) {
             xCoord = i;
@@ -180,7 +179,7 @@ public class Game extends JPanel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-
+        	courantPos=new Position(xCoord,yCoord);
         }
     }
 
