@@ -167,6 +167,7 @@ public class Game extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {  	
 				buttonPlateauOrdinateur[courantPos.getX()][courantPos.getY()].setBackground(Color.CYAN);
 				bataille.tirer();
+				shoot.setEnabled(false);
             }
 		});
 		

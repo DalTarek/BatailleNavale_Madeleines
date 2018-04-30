@@ -18,46 +18,57 @@ public abstract class EpoqueFactory {
         bateaux.add(getBateauLong());
         bateaux.add(getBateauMoyen());
         bateaux.add(getBateauMoyen());
-        bateaux.add(getBateauCourt());    
+        bateaux.add(getBateauCourt());
         
         // Positionnement aléatoire des bateaux
+
+        boolean parcoursNormal = random.nextBoolean();
 
         int zone = 0;
         int tailleMoitieLigne = Plateau.TAILLELIGNE / 2;
 
-        // On prend 4 zones et on y met 1 bateau dans chaque (Haut-gauche   /  Haut-droit    /   Bas-gauche   / Bas-droit)
+        // On prend 4 zones et on y met 1 bateau dans chaque (Haut-gauche   /  Haut-droit    /   Bas-gauche   /   Bas-droit)
         for (int i = 0; i < bateaux.size() - 1; i++) {
+            // Permet d'avoir les coordonnées de chaque zone
+            // Haut-gauche -> 0,0
+            // Haut-droit -> 1,0
+            // Bas-gauche -> 0,1
+            // Bas-droit -> 1,1
             int xZone = zone % 2;
             int yZone = (int) zone / 2;
 
-            Bateau bateau = bateaux.get(i);
+            Bateau bateau = parcoursNormal ? bateaux.get(i) : bateaux.get((bateaux.size()-1)-i);
+
+            int xBateau, yBateau;
 
             if (bateau.getOrientation()) { // le bateau est vertical
-                bateau.setPosition(new Position(xZone*tailleMoitieLigne + random.nextInt(tailleMoitieLigne), yZone*tailleMoitieLigne + random.nextInt(tailleMoitieLigne - bateau.getLongueur() + 1)));
+
+                // On place assez aléatoirement le bateau dans la zone, en regardant sa longueur pour ne pas qu'il en sorte
+                // Random jusque tailleMoitieLigne-1 pour etre sûr d'en placer un au milieu à la fin (5eme bateau)
+
+                xBateau = random.nextInt(tailleMoitieLigne-1);
+                yBateau = (bateau.getLongueur() == tailleMoitieLigne) ? 0 
+                                                            : random.nextInt(tailleMoitieLigne - bateau.getLongueur());
+
+                bateau.setPosition(new Position(xZone*tailleMoitieLigne + xBateau, yZone*tailleMoitieLigne + yBateau));
             } else { // le bateau est horizontal
-                bateau.setPosition(new Position(xZone*tailleMoitieLigne + random.nextInt(tailleMoitieLigne - bateau.getLongueur() + 1), yZone*tailleMoitieLigne + random.nextInt(tailleMoitieLigne)));                
+
+                // On place assez aléatoirement le bateau dans la zone, en regardant sa longueur pour ne pas qu'il en sorte              
+                // Random jusque tailleMoitieLigne-1 pour etre sûr d'en placer un au milieu à la fin (5eme bateau)
+
+                xBateau = (bateau.getLongueur() == tailleMoitieLigne) ? 0 
+                                                            : random.nextInt(tailleMoitieLigne - bateau.getLongueur());
+                yBateau = random.nextInt(tailleMoitieLigne-1);
+
+                bateau.setPosition(new Position(xZone*tailleMoitieLigne + xBateau, yZone*tailleMoitieLigne + yBateau));                
             }
 
             zone++;
         }
-        
-        /*
-        // Il reste 2 bateaux, on en met un en bas a droite du plateau
-        Bateau bateau2 = bateaux.get(bateaux.size() - 2);
-        if (bateau2.getOrientation()) { // le bateau est vertical
-        	bateau2.setPosition(new Position(tailleMoitieLigne + 2 + random.nextInt(3), tailleMoitieLigne + random.nextInt(3)));
-        } else { // le bateau est horizontal
-        	bateau2.setPosition(new Position(tailleMoitieLigne + 2, tailleMoitieLigne + random.nextInt(tailleMoitieLigne)));
-        }
-        */
 
-        // Il reste un bateau, on le place à peu près au milieu
-        Bateau bateau = bateaux.get(bateaux.size() - 1);
-        if (bateau.getOrientation()) { // le bateau est vertical
-            bateau.setPosition(new Position(tailleMoitieLigne + random.nextInt(2), tailleMoitieLigne + random.nextInt(tailleMoitieLigne - bateau.getLongueur())));
-        } else { // le bateau est horizontal
-            bateau.setPosition(new Position(tailleMoitieLigne, tailleMoitieLigne + random.nextInt(tailleMoitieLigne)));
-        }
+        // Il reste un bateau, on le place au milieu
+        Bateau bateau = parcoursNormal ? bateaux.get(bateaux.size() - 1) : bateaux.get(0);
+        bateau.setPosition(new Position(tailleMoitieLigne-1, tailleMoitieLigne-1));
 
         return bateaux;
     }

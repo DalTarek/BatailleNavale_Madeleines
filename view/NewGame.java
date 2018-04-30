@@ -61,7 +61,17 @@ public class NewGame extends JPanel {
 
         ageList = new JList<String>(ages);
         ageList.setBorder(BorderFactory.createLineBorder(Color.black));
+        ageList.addListSelectionListener(new ListSelectionListener(){
         
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                // if an item of age list is selected
+                // and value changed in this list (strategy list)
+                // we can enable play button
+                if (!strategyList.isSelectionEmpty())
+                    playButton.setEnabled(true);
+                }
+        });
         lists.add(ageList);
 
         strategyList = new JList<String>(strategies);
