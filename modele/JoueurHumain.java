@@ -31,11 +31,10 @@ public class JoueurHumain {
 				plateau.toucher(p);
 				listeCaseTouche.add(p);
 			}
-			
-			
-			
+				
 		}else{
 			listeCaseRate.add(p);
+
 		}
 	}
 	/**

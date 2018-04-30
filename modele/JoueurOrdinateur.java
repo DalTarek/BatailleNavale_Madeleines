@@ -9,6 +9,7 @@ import modele.strategie.Strategie;
 public class JoueurOrdinateur {
 	ArrayList<Position> listeCaseTouche;
 	ArrayList<Position> listeCaseRate;
+
 	ArrayList<Bateau> listeBateau;
 	Plateau plateau;
 	
@@ -38,9 +39,11 @@ public class JoueurOrdinateur {
 				listeCaseTouche.add(p);
 			}
 			
+
 			
 		}else{
 			listeCaseRate.add(p);
+
 		}
 	}
 	/**
@@ -92,6 +95,7 @@ public class JoueurOrdinateur {
 		}
 	}
 	
+	
 	/**
 	 * 
 	 * @return booolean true si le joueur ordinateur a perdu
@@ -131,5 +135,13 @@ public class JoueurOrdinateur {
 	
 	public Plateau getPlateau() {
 		return plateau;
+	}
+	
+	public ArrayList<Position> getListeCaseTouche() {
+		return listeCaseTouche;
+	}
+
+	public ArrayList<Position> getListeCaseRate() {
+		return listeCaseRate;
 	}
 }
