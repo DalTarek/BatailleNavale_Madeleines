@@ -188,4 +188,18 @@ public class BatailleNavale extends Observable {
 	public int getTailleListePartiesSauvegardees() {
 		return nomPartiesSauvegardees.size();
 	}
+
+	public int getNombreTirsRates(int joueur) {
+		if (joueur == 0)
+			return humain.getNombreTirsRates();
+
+		return ordinateur.getNombreTirsRates();
+	}
+
+	public int getNombreTirsReussis(int joueur) {
+		if (joueur == 0)
+			return humain.getNombreTirsReussis();
+
+		return ordinateur.getNombreTirsReussis();
+	}
 }

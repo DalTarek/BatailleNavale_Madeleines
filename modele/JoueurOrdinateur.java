@@ -10,6 +10,12 @@ public class JoueurOrdinateur {
 	ArrayList<Position> listeCaseTouche;
 	ArrayList<Position> listeCaseRate;
 
+	// Stocke le nombre de tirs réussis et ratés effectué par le joueur
+	// Ce n'est pas la même valeur que la taille des deux listes du dessus
+	// Puisque ces listes stockent aussi toutes les cases d'un bateau coulé,
+	int cptTirsRates = 0;
+	int cptTirsReussis = 0;
+
 	ArrayList<Bateau> listeBateau;
 	Plateau plateau;
 	
@@ -39,11 +45,11 @@ public class JoueurOrdinateur {
 				listeCaseTouche.add(p);
 			}
 			
-
+			cptTirsReussis++;
 			
 		}else{
 			listeCaseRate.add(p);
-
+			cptTirsRates++;
 		}
 	}
 	/**
@@ -146,5 +152,13 @@ public class JoueurOrdinateur {
 
 	public ArrayList<Position> getListeCaseRate() {
 		return listeCaseRate;
+	}
+
+	public int getNombreTirsReussis() {
+		return cptTirsReussis;
+	}
+
+	public int getNombreTirsRates() {
+		return cptTirsRates;
 	}
 }
