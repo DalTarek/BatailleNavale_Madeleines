@@ -251,8 +251,8 @@ public class Game extends JPanel implements Observer {
 		}
 
 		if (bataille.partieTerminee()) {
-			String joueurGagnant = bataille.getJoueurCourant() == 0 ? "humain" : "ordinateur";
-			JOptionPane.showMessageDialog(null, "Le joueur " + joueurGagnant + " a gagné !", "Information", JOptionPane.INFORMATION_MESSAGE);
+			String message = bataille.getJoueurCourant() == 0 ? "Vous avez gagné !" : "L'ordinateur a gagné !";
+			JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.INFORMATION_MESSAGE);
 
 			application.switchToPanel("menu");
 		}
