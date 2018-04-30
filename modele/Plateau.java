@@ -9,7 +9,7 @@ import java.util.Random;
 public class Plateau {
 	final public static int TAILLELIGNE = 10;
 
-	//tableau d'entier : 1 si présence de bateau, 0 sinon , -1 si touché 
+	//tableau d'entier : 1 si présence de bateau, 0 sinon , -1 si touché , -2 si coulé
 	private int [][] plateau;
 	
 	/**
@@ -93,12 +93,12 @@ public class Plateau {
 		Position posCourant=b.getPos();
 		if(orientation){
 			for(int y=posCourant.getY();y<posCourant.getY()+longueur;y++){		
-				this.plateau[posCourant.getX()][y]=-1;
+				this.plateau[posCourant.getX()][y]=-2;
 				listTouche.add(new Position(posCourant.getX(),y));
 			}
 		}else{
 			for(int x=posCourant.getX();x<posCourant.getX()+longueur;x++){		
-				this.plateau[x][posCourant.getY()]=-1;
+				this.plateau[x][posCourant.getY()]=-2;
 				listTouche.add(new Position(x,posCourant.getY()));
 			}
 		}

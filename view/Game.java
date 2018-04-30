@@ -213,8 +213,11 @@ public class Game extends JPanel implements Observer {
 		for (int j = 0; j < plateauHumain.TAILLELIGNE; j++) {
 			for (int i = 0; i < plateauHumain.TAILLELIGNE; i++) {
 				switch (plateauHumain.getValeur(i, j)) {
-					case -1:
+					case -2:
 						buttonPlateauHumain[i][j].setBackground(Color.RED);
+						break;
+					case -1:
+						buttonPlateauHumain[i][j].setBackground(Color.ORANGE);
 						break;
 					case 0:
 						if (listeCaseRateeH.contains(new Position(i, j)))
@@ -234,12 +237,15 @@ public class Game extends JPanel implements Observer {
 		for (int j = 0; j < plateauHumain.TAILLELIGNE; j++) {
 			for (int i = 0; i < plateauHumain.TAILLELIGNE; i++) {
 				if (listeCaseTouchee.contains(new Position(i, j)))
-					buttonPlateauOrdinateur[i][j].setBackground(Color.RED);
+					buttonPlateauOrdinateur[i][j].setBackground(Color.ORANGE);
 				else
 					if (listeCaseRatee.contains(new Position(i, j)))
 						buttonPlateauOrdinateur[i][j].setBackground(Color.BLUE);
 					else
 						buttonPlateauOrdinateur[i][j].setBackground(Color.CYAN);
+				if(plateauOrdinateur.getValeur(i, j)==-2){
+					buttonPlateauOrdinateur[i][j].setBackground(Color.RED);
+				}
 			}
 		}
 
