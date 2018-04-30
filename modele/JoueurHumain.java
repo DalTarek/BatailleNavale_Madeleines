@@ -13,28 +13,40 @@ public class JoueurHumain {
 	// Puisque ces listes stockent aussi toutes les cases d'un bateau coulé,
 	int cptTirsRates = 0;
 	int cptTirsReussis = 0;
-
+	//la liste des bateau du joueur humain
 	ArrayList<Bateau> listeBateau;
+	//le plateau du joueur humain
 	Plateau plateau;
-	
+	/**
+	 * Constructeur de Joueur Humain
+	 * @param p le plateau
+	 * @param listbat la liste de bateau
+	 */
 	public JoueurHumain(Plateau p,ArrayList<Bateau>listbat){
 		plateau=p;
 		listeBateau=listbat;
+		//on initialise les liste de case touche et rate
 		listeCaseTouche=new ArrayList<Position>();
 		listeCaseRate=new ArrayList<Position>();
 	}
+	/**
+	 * Fonction qui permet de faire subir un tir au joueur a une position
+	 * @param p la position du tir subit
+	 */
 	public void subirTir(Position p){
-		//On verifie si la postion du tir subit est valide (si il y a un 1 sur le plateau)
+		//On verifie si a la position du tir il se trouve bien un bateau (si il y a un 1 sur le plateau)
 		if(plateau.verifPresenceBateau(p)){
 			//on recherche l'indice du bateau touché dans la liste
 			int indiceB=this.rechercheBateau(p);
 			//indiceB ne peux pas être =-1
 			assert(indiceB!=-1);
+			//Si le bateau est coule(diminuer vie retourne un boolean)
 			if(listeBateau.get(indiceB).diminuerVie()){
 				//on met a jour la liste des cases touche dans la méthode CoulerBateau : (il y a plusieurs cases touche)
 				plateau.coulerBateau(listeBateau.get(indiceB),listeCaseTouche);
 				
 			}else{
+				//sinon le bateau est simplement touche et on ajoute la position a la liste des case touche
 				plateau.toucher(p);
 				listeCaseTouche.add(p);
 			}
@@ -42,6 +54,7 @@ public class JoueurHumain {
 			cptTirsReussis++;
 			
 		}else{
+			//ici on est dans le cas ou la position du tir se trouve pas sur un bateau
 			listeCaseRate.add(p);
 			cptTirsRates++;
 		}
@@ -120,6 +133,7 @@ public class JoueurHumain {
 		return aPerdu;
 	}
 	
+	/********************GETTER/SETTER********************/
 	public Plateau getPlateau() {
 		return plateau;
 	}

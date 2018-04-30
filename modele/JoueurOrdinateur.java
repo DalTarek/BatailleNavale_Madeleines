@@ -20,7 +20,11 @@ public class JoueurOrdinateur {
 	Plateau plateau;
 	
 	private Strategie strategie;
-	
+	/**
+	 * Constructeur de Joueur ordinateur
+	 * @param p le plateau
+	 * @param listbat la liste de bateau
+	 */
 	public JoueurOrdinateur(Plateau p, ArrayList<Bateau>listbat, Strategie strat){
 		plateau=p;
 		listeBateau=listbat;
@@ -28,7 +32,10 @@ public class JoueurOrdinateur {
 		listeCaseRate=new ArrayList<Position>();
 		this.strategie = strat;
 	}
-	
+	/**
+	 * Fonction qui permet de faire subir un tir au joueur a une position
+	 * @param p la position du tir subit
+	 */
 	public void subirTir(Position p){
 		//On verifie si la postion du tir subit est valide (si il y a un 1 sur le plateau)
 		if(plateau.verifPresenceBateau(p)){
@@ -138,6 +145,7 @@ public class JoueurOrdinateur {
 		return strategie.getProchainTir(casesTouchees, casesRatees);
 	}
 	
+	/*************************************GETTER/SETTER**********************/
 	public Plateau getPlateau() {
 		return plateau;
 	}

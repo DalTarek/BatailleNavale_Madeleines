@@ -33,9 +33,11 @@ public class Plateau {
 		//position du bateau i
 		Position posCourant;
 		for(int i=0;i<listBateau.size();i++){
+			//on recupère la longeur, l'orientation, et la position courante du bateau i
 			longueur=listBateau.get(i).getLongueur();
 			orientation=listBateau.get(i).getOrientation();
 			posCourant=listBateau.get(i).getPos();
+			//Si le bateau est Vertical
 			if(orientation){
 				
 				for(int y=posCourant.getY();y<posCourant.getY()+longueur;y++){
@@ -46,6 +48,7 @@ public class Plateau {
 					}
 				}
 			}else{
+				//si le bateau est horizontal
 				
 				for(int x=posCourant.getX();x<posCourant.getX()+longueur;x++){
 					if(this.plateau[x][posCourant.getY()]==0){
@@ -57,15 +60,7 @@ public class Plateau {
 			}
 		}
 	}
-	/**
-	 * Constructeur qui g�n�re un plateau al�atoire
-	 */
-	/*public Plateau() {
-		Random r = new Random();
-		for (int i = 0; i < plateau.length; i++)
-			for (int j = 0; j < plateau[0].length; j++)
-				this.plateau[i][j] = r.nextInt(2);
-	}*/
+
 	
 	/**
 	 * Permet de verifier si un bateau se trouve à une postiion x, y.
@@ -91,13 +86,16 @@ public class Plateau {
 		int longueur=b.getLongueur();
 		boolean orientation=b.getOrientation();
 		Position posCourant=b.getPos();
+		//Si vertical
 		if(orientation){
 			for(int y=posCourant.getY();y<posCourant.getY()+longueur;y++){		
+				//-2 pour indiquer que le bateau est coule
 				this.plateau[posCourant.getX()][y]=-2;
 				listTouche.add(new Position(posCourant.getX(),y));
 			}
-		}else{
-			for(int x=posCourant.getX();x<posCourant.getX()+longueur;x++){		
+		}else{//si horizontal
+			for(int x=posCourant.getX();x<posCourant.getX()+longueur;x++){	
+				//-2 pour indiquer que le bateau est coule
 				this.plateau[x][posCourant.getY()]=-2;
 				listTouche.add(new Position(x,posCourant.getY()));
 			}
@@ -122,7 +120,9 @@ public class Plateau {
 	public int getValeur(int x, int y) {
 		return plateau[x][y];
 	}
-	
+	/**
+	 * Méthode de toString classique
+	 */
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		
